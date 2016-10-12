@@ -14,7 +14,8 @@ Monday: 17:40 – 19.40
 Thursday: 15:40 – 17:40
 
 
-References
+References 
+
 [1] "Classic Frogger Game"
 http://www.froggerclassic.appspot.com/ [Accessed, 12 Oct 2016].
  
