@@ -5,11 +5,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class Screen extends JPanel {
+public class Menu extends JPanel {
 
 	private BufferedImage mainMenu;
 	
-	protected Screen() {
+	protected Menu() {
 		
 		try {
 			mainMenu = ImageIO.read(getClass().getResourceAsStream("/menu final.png"));

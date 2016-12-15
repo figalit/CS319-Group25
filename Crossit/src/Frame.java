@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class Frame extends JFrame {
 
-	Screen s;
+	Menu s;
 	
 	protected Frame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,7 +18,7 @@ public class Frame extends JFrame {
 	protected void init() {
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(1, 1, 0, 0));
-		s = new Screen();
+		s = new Menu();
 		add(s);
 		
 		setVisible(true);
