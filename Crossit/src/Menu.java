@@ -36,6 +36,7 @@ public class Menu extends JPanel {
 			g.drawImage(grass, i * 100, 810, 100, 90, null);
 		}
 		
+		
 	}
 	
 	
