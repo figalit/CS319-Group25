@@ -23,5 +23,5 @@ public class Frame extends JFrame {
 		
 		setVisible(true);
 	}
-	
+	s
 }
