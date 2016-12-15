@@ -1,6 +1,7 @@
 
-public class Main {
-	public static void main(String args[]){
-		System.out.println("Hello Crossith!");
+public class Main extends Frame{
+	
+	public static void main(String[] args) {
+		new Frame();
 	}
 }
