@@ -7,12 +7,14 @@ import javax.swing.JPanel;
 
 public class Menu extends JPanel {
 
-	private BufferedImage mainMenu;
+	private BufferedImage grass;
+	private BufferedImage road;
 	
 	protected Menu() {
 		
 		try {
-			mainMenu = ImageIO.read(getClass().getResourceAsStream("/menu final.png"));
+			road = ImageIO.read(getClass().getResourceAsStream("/road.png"));
+			grass = ImageIO.read(getClass().getResourceAsStream("/grass.png"));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -21,8 +23,18 @@ public class Menu extends JPanel {
 	}
 	
 	public void paint(Graphics g){
-		g.drawImage(mainMenu, 0, 0, mainMenu.getWidth() * 2, mainMenu.getHeight() * 2, null);
-		
+		for(int i = 0; i < 14; i++) {
+			g.drawImage(grass, i * 100, 0, 100, 90, null);
+			g.drawImage(road, i * 100, 90, 100, 90, null);
+			g.drawImage(road, i * 100, 180, 100, 90, null);
+			g.drawImage(road, i * 100, 270, 100, 90, null);
+			g.drawImage(grass, i * 100, 360, 100, 90, null);
+			g.drawImage(road, i * 100, 450, 100, 90, null);
+			g.drawImage(grass, i * 100, 540, 100, 90, null);
+			g.drawImage(road, i * 100, 630, 100, 90, null);
+			g.drawImage(road, i * 100, 720, 100, 90, null);
+			g.drawImage(grass, i * 100, 810, 100, 90, null);
+		}
 		
 	}
 	

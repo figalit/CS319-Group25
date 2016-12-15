@@ -4,12 +4,12 @@ import javax.swing.JFrame;
 
 public class Frame extends JFrame {
 
-	Menu s;
+	Menu menu;
 	
 	protected Frame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1400,800);
-		setResizable(true);
+		setSize(1400, 925);
+		setResizable(false);
 		setTitle("Cross-It!");
 		
 		init();
@@ -18,8 +18,8 @@ public class Frame extends JFrame {
 	protected void init() {
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(1, 1, 0, 0));
-		s = new Menu();
-		add(s);
+		menu = new Menu();
+		add(menu);
 		
 		setVisible(true);
 	}
