@@ -5,10 +5,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MainMenu extends Menu implements ActionListener{
-		
+	
 	//Image variables
 	private BufferedImage cross;
 	private BufferedImage newgame;
@@ -105,7 +106,8 @@ public class MainMenu extends Menu implements ActionListener{
 			
 			if (e.getSource() == highscoresButton){
 				//Switch func, located in frame
-				Frame.switchPanel(new Help());
+				System.out.println(this.getParent().getParent().getParent().getParent().getClass().getName());
+				((Frame) this.getParent().getParent().getParent().getParent()).switchPanel(new Help());
 			}
 			
 			if (e.getSource() == settingsButton){
@@ -121,7 +123,36 @@ public class MainMenu extends Menu implements ActionListener{
 				System.exit(0);
 			}
 			
-		}	
-	
+		}
+
+		@Override
+		public void switchPanel(Object o) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public JPanel getPanel() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public JFrame getFrame() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void setFrame(JFrame f) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void setPanel(JPanel p) {
+			// TODO Auto-generated method stub
+			
+		}
 
 }

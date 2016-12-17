@@ -6,10 +6,9 @@ import javax.swing.JPanel;
 public class Frame extends JFrame {
 	
 	//Asagidaki method icin gerekli
-	private static Frame frame = new Frame();
 	
-	public static Frame getFrame() {
-        return frame;
+	public Frame getFrame() {
+        return this;
     }
 	
 	
@@ -34,7 +33,7 @@ public class Frame extends JFrame {
 	}
 	
 	//Bunu eski bi projeden buldum yaptigim, calistiramadim ama su an
-	protected static void switchPanel(JPanel p){
+	protected void switchPanel(JPanel p){
 		getFrame().setContentPane(p);
         getFrame().validate();
 	}
