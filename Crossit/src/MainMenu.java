@@ -1,3 +1,4 @@
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -44,27 +45,32 @@ public class MainMenu extends Menu implements ActionListener{
 		
 		//Properties of the buttons
 		newGameButton.setBounds(425, 375, 575, 55); //Shape and position
+		newGameButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		newGameButton.setBorderPainted(false); //Border invisible
 		newGameButton.setContentAreaFilled(false); //Area invisible
 		newGameButton.setToolTipText("Start a new game");
 		
 		highscoresButton.setBounds(475, 480, 475, 55);
+		highscoresButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		highscoresButton.setBorderPainted(false);
 		highscoresButton.setContentAreaFilled(false);
 		highscoresButton.setToolTipText("Display the Highscores");
 		
 		settingsButton.setBounds(545, 572, 325, 52);
+		settingsButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		settingsButton.setBorderPainted(false);
 		settingsButton.setContentAreaFilled(false);
 		settingsButton.setToolTipText("Show settings menu");
 		
 
 		creditsButton.setBounds(575, 660, 250, 50);
+		creditsButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		creditsButton.setBorderPainted(false);
 		creditsButton.setContentAreaFilled(false);
 		creditsButton.setToolTipText("Credits");
 		
 		quitButton.setBounds(625, 765, 150, 45);
+		quitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		quitButton.setBorderPainted(false);
 		quitButton.setContentAreaFilled(false);
 		quitButton.setToolTipText("Exit the game");
@@ -106,16 +112,15 @@ public class MainMenu extends Menu implements ActionListener{
 			
 			if (e.getSource() == highscoresButton){
 				//Switch func, located in frame
-				System.out.println(this.getParent().getParent().getParent().getParent().getClass().getName());
-				((Frame) this.getParent().getParent().getParent().getParent()).switchPanel(new Help());
+				Frame.switchPanel(new Highscores());
 			}
 			
 			if (e.getSource() == settingsButton){
-				//Change to settingsPanel
+				Frame.switchPanel(new Settings());
 			}
 			
 			if (e.getSource() == creditsButton){
-				//Change to creditsPanel
+				Frame.switchPanel(new Credits());
 			}
 
 			if (e.getSource() == quitButton){
@@ -124,35 +129,6 @@ public class MainMenu extends Menu implements ActionListener{
 			}
 			
 		}
-
-		@Override
-		public void switchPanel(Object o) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public JPanel getPanel() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public JFrame getFrame() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void setFrame(JFrame f) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void setPanel(JPanel p) {
-			// TODO Auto-generated method stub
-			
-		}
-
 }
+
+		
