@@ -6,4 +6,8 @@ public class Motorcycle extends Vehicle
 		super(direction);
 		super.setImage(""); //addr of motor png
 	}
+	public void print()
+	{
+		System.out.print("-Motor with directionj: " + getDirection()+ '-');
+	}
 }

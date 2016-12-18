@@ -23,8 +23,7 @@ public abstract class GameObject {
 	    } 
 	    catch (IOException e)
 	    {
-	      System.out.println("Png does not exist");
+	      System.out.println("Png cannot be found");
 	    }
-	  }
-	
+	  }	
 }

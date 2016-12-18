@@ -1,13 +1,16 @@
 
+
 public class RoadPart extends GameObject{
 	private Collectable collectable;
 	private Vehicle vehicle;
 	private Character character;
+	//private BufferedImage image;
+	
 	public RoadPart()
 	{
 		super.setImage(""); //address of object picture
 		setCollectable(null);
-		vehicle = null;
+		setVehicle(null);
 		setCharacter(null);
 	}
 	public RoadPart(Vehicle vehicle)
@@ -40,5 +43,13 @@ public class RoadPart extends GameObject{
 	}
 	public void setCollectable(Collectable collectable) {
 		this.collectable = collectable;
+	}
+	
+	public void print()
+	{
+		if(vehicle != null)
+			((Motorcycle)vehicle).print();
+		else
+			System.out.print("-empty-");
 	}
 }
