@@ -20,6 +20,8 @@ public class Settings extends SubMenu implements ActionListener{
 	//private JSlider volumeSlider = new JSlider(JSlider.VERTICAL, 0, 100, 50);
 	//Comment out yapinca settingse girmiyo
 	
+	String volume1 = "volume";
+	
 	private BufferedImage theme0, theme1, theme, volume, outfit, changeSymbol, player;
 
 	protected Settings () {
@@ -29,7 +31,7 @@ public class Settings extends SubMenu implements ActionListener{
 			theme0 = ImageIO.read(getClass().getResourceAsStream("/theme0.png"));
 			theme1 = ImageIO.read(getClass().getResourceAsStream("/theme1.png"));
 			theme = ImageIO.read(getClass().getResourceAsStream("/theme.png"));
-			volume = ImageIO.read(getClass().getResourceAsStream("/volume.png"));
+			volume = ImageIO.read(getClass().getResourceAsStream("/" + volume1 + ".png"));
 			outfit = ImageIO.read(getClass().getResourceAsStream("/outfit.png"));
 			changeSymbol = ImageIO.read(getClass().getResourceAsStream("/changeSymbol.png"));
 			player = ImageIO.read(getClass().getResourceAsStream("/player.png"));
@@ -98,12 +100,12 @@ public class Settings extends SubMenu implements ActionListener{
 		
 		if (e.getSource() == theme0Button) {
 			setTheme(0);
-			super.superRepaint();
+			repaint();
 		}
 			
 		if (e.getSource() == theme1Button) {
 			setTheme(1);
-			super.superRepaint();
+			repaint();
 		}
 			
 	}

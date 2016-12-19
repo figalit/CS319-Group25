@@ -18,6 +18,7 @@ public class MainMenu extends Menu implements ActionListener{
 	private BufferedImage quit;
 	private BufferedImage highscores;
 	private BufferedImage settings;
+	private BufferedImage help;
 	
 	//Button variables
 	private JButton newGameButton = new JButton("");
@@ -25,6 +26,7 @@ public class MainMenu extends Menu implements ActionListener{
 	private JButton settingsButton = new JButton("");
 	private JButton creditsButton = new JButton("");
 	private JButton quitButton = new JButton("");
+	private JButton helpButton = new JButton("");
 	
 	protected MainMenu() {
 		super();
@@ -36,6 +38,7 @@ public class MainMenu extends Menu implements ActionListener{
 			highscores = ImageIO.read(getClass().getResourceAsStream("/highscores.png"));
 			quit = ImageIO.read(getClass().getResourceAsStream("/quit.png"));
 			settings = ImageIO.read(getClass().getResourceAsStream("/settings.png"));
+			help = ImageIO.read(getClass().getResourceAsStream("/help.png"));
 
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -75,19 +78,27 @@ public class MainMenu extends Menu implements ActionListener{
 		quitButton.setContentAreaFilled(false);
 		quitButton.setToolTipText("Exit the game");
 		
+		helpButton.setBounds(1300, 0, 60, 60);
+		helpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		helpButton.setBorderPainted(false);
+		helpButton.setContentAreaFilled(false);
+		helpButton.setToolTipText("Help");
+		
 		//Action Listener
 		newGameButton.addActionListener(this);
 		creditsButton.addActionListener(this);
 		settingsButton.addActionListener(this);
 		highscoresButton.addActionListener(this);
 		quitButton.addActionListener(this);
+		helpButton.addActionListener(this);
 		
 		//Adding buttons to panel
-		this.add(newGameButton);
-		this.add(creditsButton);
-		this.add(quitButton);
-		this.add(settingsButton);
-		this.add(highscoresButton);
+		add(newGameButton);
+		add(creditsButton);
+		add(quitButton);
+		add(settingsButton);
+		add(highscoresButton);
+		add(helpButton);
 		
 	}
 		
@@ -101,6 +112,7 @@ public class MainMenu extends Menu implements ActionListener{
 		g.drawImage(settings, 475, 510, 450, 200, null);
 		g.drawImage(credits, 500, 600, 400, 200, null);
 		g.drawImage(quit, 500, 700, 350, 200, null);
+		g.drawImage(help, 1300, 10, 50, 50, null);
 			
 	}	
 
@@ -113,6 +125,10 @@ public class MainMenu extends Menu implements ActionListener{
 			if (e.getSource() == highscoresButton){
 				//Switch func, located in frame
 				Frame.switchPanel(new Highscores());
+			}
+			
+			if (e.getSource() == helpButton) {
+				Frame.switchPanel(new Help());
 			}
 			
 			if (e.getSource() == settingsButton){

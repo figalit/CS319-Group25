@@ -16,14 +16,8 @@ public abstract class GameObject {
 	public BufferedImage getImage() {
 		return image;
 	}
-	public void setImage(String addr){
-		try
-	    {
-	      image = ImageIO.read(new File(addr));// the line that reads the image file
-	    } 
-	    catch (IOException e)
-	    {
-	      System.out.println("Png cannot be found");
-	    }
+	public void setImage(String imageName){
+		 try { image = ImageIO.read(getClass().getResourceAsStream("/" + imageName)); } 
+	        catch(IOException e) {    e.printStackTrace(); }
 	  }	
 }
