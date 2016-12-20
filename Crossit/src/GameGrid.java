@@ -2,7 +2,6 @@
 public class GameGrid 
 {
 	private Part[][] gameMatrix = new Part[10][10];
-	private int stageNo;
 	private int[][] easyVehicleSet;
 	private int[][] normalVehicleSet;
 	private int[][] hardVehicleSet;
@@ -10,12 +9,10 @@ public class GameGrid
 	
 	public GameGrid(int[][] easyVehicleSet, int[][] normalVehicleSet, int[][] hardVehicleSet)
 	{
-		
 		this.easyVehicleSet = easyVehicleSet;
 		this.normalVehicleSet = normalVehicleSet;
 		this.hardVehicleSet = hardVehicleSet;
 		directions = new int[10];
-		generate(stageNo);
 	}
 	
 	protected void generate(int no)	//generates a full stage with vehicles and bonuses according to difficulty
