@@ -1,27 +1,29 @@
 
-public class SidewalkPart extends GameObject {
-	private Collectable collectable;
-	private Character character;
+public class SidewalkPart extends Part {
 	
 	public SidewalkPart()
 	{
 		setCollectable(null);
 		setCharacter(null);
+		this.vehicle = null;
 	}
 	public SidewalkPart(Character character)
 	{
 		setCollectable(null);
 		setCharacter(character);
+		this.vehicle = null;
 	}
 	public SidewalkPart(Character character, Collectable collectable)
 	{
 		setCollectable(collectable);
 		setCharacter(character);
+		this.vehicle = null;
 	}
 	public SidewalkPart(Collectable collectable)
 	{
 		setCollectable(collectable);
 		setCharacter(null);
+		this.vehicle = null;
 	}
 
 	public Collectable getCollectable() {
@@ -35,5 +37,9 @@ public class SidewalkPart extends GameObject {
 	}
 	public void setCharacter(Character character) {
 		this.character = character;
+	}
+	
+	public Vehicle getVehicle() {
+		return null;
 	}
 }

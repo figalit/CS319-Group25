@@ -1,7 +1,7 @@
 
 public class GameGrid 
 {
-	private GameObject[][] gameMatrix = new GameObject[10][10];
+	private Part[][] gameMatrix = new Part[10][10];
 	private int stageNo;
 	private int[][] easyVehicleSet;
 	private int[][] normalVehicleSet;

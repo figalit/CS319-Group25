@@ -4,15 +4,15 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class GameObject {
-	private Position pos;
-	private BufferedImage image;
+	//private Position pos;
+	protected BufferedImage image;
 	
-	public Position getPos() {
+	/*public Position getPos() {
 		return pos;
 	}
 	public void setPos(Position pos) {
 		this.pos = pos;
-	}
+	}*/
 	public BufferedImage getImage() {
 		return image;
 	}

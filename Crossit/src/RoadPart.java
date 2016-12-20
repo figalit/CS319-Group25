@@ -1,9 +1,7 @@
 
 
-public class RoadPart extends GameObject{
-	private Collectable collectable;
-	private Vehicle vehicle;
-	private Character character;
+public class RoadPart extends Part{
+	
 	//private BufferedImage image;
 	
 	public RoadPart()
@@ -28,7 +26,7 @@ public class RoadPart extends GameObject{
 	
 	public boolean checkCollision()
 	{
-		if(vehicle != null && character != null)
+		if(getVehicle() != null && getCharacter() != null)
 			return true;
 		return false;
 	}
@@ -47,8 +45,8 @@ public class RoadPart extends GameObject{
 	
 	public void print()
 	{
-		if(vehicle != null)
-			((Motorcycle)vehicle).print();
+		if(getVehicle() != null)
+			((Motorcycle)getVehicle()).print();
 		else
 			System.out.print("-empty-");
 	}
