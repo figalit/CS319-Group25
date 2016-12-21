@@ -8,6 +8,6 @@ public class Motorcycle extends Vehicle
 	}
 	public void print()
 	{
-		System.out.print("-Motor with directionj: " + getDirection()+ '-');
+		System.out.print("-Motor: " + getDirection()+ '-');
 	}
 }
