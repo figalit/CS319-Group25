@@ -4,7 +4,7 @@ public class Motorcycle extends Vehicle
 	public Motorcycle(int direction)
 	{
 		super(direction);
-		super.setImage(""); //addr of motor png
+		super.setImage("car.png"); //addr of motor png
 	}
 	public void print()
 	{

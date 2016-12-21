@@ -11,7 +11,7 @@ public class Menu extends JPanel {
 	private BufferedImage road;
 	
 	//temporary variable
-	private int theme;
+	private int theme = 1;
 
 	protected Menu() {
 		
@@ -36,6 +36,22 @@ public class Menu extends JPanel {
 	}
 	
 	public void paint(Graphics g){
+		
+		try {
+			if (theme == 0) {
+				road = ImageIO.read(getClass().getResourceAsStream("/road.png"));
+				nonRoad = ImageIO.read(getClass().getResourceAsStream("/grass.png"));
+			}
+			
+			if (theme == 1) {
+				road = ImageIO.read(getClass().getResourceAsStream("/roadDesert.png"));
+				nonRoad = ImageIO.read(getClass().getResourceAsStream("/desert.png"));
+			}
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
 		for(int i = 0; i < 14; i++) {
 			g.drawImage(nonRoad, i * 100, 0, 100, 90, null);
 			g.drawImage(road, i * 100, 90, 100, 90, null);
@@ -47,8 +63,8 @@ public class Menu extends JPanel {
 			g.drawImage(road, i * 100, 630, 100, 90, null);
 			g.drawImage(road, i * 100, 720, 100, 90, null);
 			g.drawImage(nonRoad, i * 100, 810, 100, 90, null);
-			
 		}
+
 	}
 	
 	public int getTheme() {

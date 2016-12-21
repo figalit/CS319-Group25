@@ -6,6 +6,7 @@ public class SidewalkPart extends Part {
 		setCollectable(null);
 		setCharacter(null);
 		this.vehicle = null;
+		super.setImage("grass.png");
 	}
 	public SidewalkPart(Character character)
 	{

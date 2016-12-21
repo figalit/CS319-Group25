@@ -6,7 +6,7 @@ public class RoadPart extends Part{
 	
 	public RoadPart()
 	{
-		super.setImage(""); //address of object picture
+		super.setImage("road.png"); //address of object picture
 		setCollectable(null);
 		setVehicle(null);
 		setCharacter(null);

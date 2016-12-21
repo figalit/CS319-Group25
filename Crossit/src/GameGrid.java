@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class GameGrid 
 {
 	private Part[][] gameMatrix = new Part[10][10];
@@ -6,20 +6,27 @@ public class GameGrid
 	private int[][] normalVehicleSet;
 	private int[][] hardVehicleSet;
 	private int[] directions;
+	private Position charPosition;
+	private Character player;
+	private ArrayList hats;
 	
 	public GameGrid(int[][] easyVehicleSet, int[][] normalVehicleSet, int[][] hardVehicleSet)
 	{
+		hats.add("player.png");
 		this.easyVehicleSet = easyVehicleSet;
 		this.normalVehicleSet = normalVehicleSet;
 		this.hardVehicleSet = hardVehicleSet;
 		directions = new int[10];
+		setCharPosition(null);
+		player = new Character(hats);
 	}
 	
 	protected void generate(int no)	//generates a full stage with vehicles and bonuses according to difficulty
 	{
+		setCharPosition(new Position(4,9));
 		for(int i = 0; i < 10; i++)
 			if(i == 4)
-				gameMatrix[i][9] = new SidewalkPart(new Character());
+				gameMatrix[i][9] = new SidewalkPart(player);//putting character in to position
 			else
 				gameMatrix[i][9] = new SidewalkPart();
 		
@@ -107,5 +114,17 @@ public class GameGrid
 				((RoadPart)gameMatrix[j][i]).print();
 				System.out.println();
 		}
+	}
+	protected void addHat(String addr)
+	{
+		player.addHat(addr);
+	}
+	
+	public Position getCharPosition() {
+		return charPosition;
+	}
+
+	public void setCharPosition(Position charPosition) {
+		this.charPosition = charPosition;
 	}
 }
