@@ -39,7 +39,16 @@ public class SidewalkPart extends Part {
 	public void setCharacter(Character character) {
 		this.character = character;
 	}
-	
+	public Character moveCharacter()
+	{
+		Character temp = getCharacter();
+		setCharacter(null);
+		return temp;
+	}	
+	public void print()
+	{
+		super.print();
+	}
 	public Vehicle getVehicle() {
 		return null;
 	}

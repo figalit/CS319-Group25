@@ -45,9 +45,12 @@ public class RoadPart extends Part{
 	
 	public void print()
 	{
-		if(getVehicle() != null)
-			((Motorcycle)getVehicle()).print();
-		else
-			System.out.print("-empty-");
+		super.print();
+	}
+	public Character moveCharacter()
+	{
+		Character temp = getCharacter();
+		setCharacter(null);
+		return temp;
 	}
 }
