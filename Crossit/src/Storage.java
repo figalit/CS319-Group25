@@ -8,6 +8,7 @@ import java.io.IOException;
  * @author Figali Taho
  *
  */
+<<<<<<< HEAD
 /**
  * @author Figali Taho
  *
@@ -24,6 +25,16 @@ public class Storage {
 	
 	private String playGameFile;
 	private String settingsFile;
+=======
+public class Storage {
+	static final int SIZE_OF_GRID = 10;
+	static final int EASY = 1;
+	static final int MED = 2;
+	static final int HARD = 3;
+	
+	private String playGameFile;
+	private String settingsFile;   
+>>>>>>> refs/remotes/origin/crossit-general
 	private String highScoresFile;
 	
 	private Storage(){

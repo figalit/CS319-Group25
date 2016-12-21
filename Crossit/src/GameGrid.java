@@ -1,7 +1,11 @@
 import java.util.*;
 public class GameGrid 
 {
+<<<<<<< HEAD
 	private Part[][] gameMatrix = new Part[10][10];
+=======
+	private GameObject[][] gameMatrix = new GameObject[10][10];
+>>>>>>> refs/remotes/origin/crossit-general
 	private int[][] easyVehicleSet;
 	private int[][] normalVehicleSet;
 	private int[][] hardVehicleSet;
@@ -12,13 +16,19 @@ public class GameGrid
 	
 	public GameGrid(int[][] easyVehicleSet, int[][] normalVehicleSet, int[][] hardVehicleSet)
 	{
+<<<<<<< HEAD
 		hats.add("player.png");
+=======
+>>>>>>> refs/remotes/origin/crossit-general
 		this.easyVehicleSet = easyVehicleSet;
 		this.normalVehicleSet = normalVehicleSet;
 		this.hardVehicleSet = hardVehicleSet;
 		directions = new int[10];
+<<<<<<< HEAD
 		setCharPosition(null);
 		player = new Character(hats);
+=======
+>>>>>>> refs/remotes/origin/crossit-general
 	}
 	
 	protected void generate(int no)	//generates a full stage with vehicles and bonuses according to difficulty
