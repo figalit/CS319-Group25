@@ -15,7 +15,7 @@ public class Storage {
 	static final int HARD = 3;
 	
 	private String playGameFile;
-	private String settingsFile;
+	private String settingsFile;   
 	private String highScoresFile;
 	
 	private Storage(){
