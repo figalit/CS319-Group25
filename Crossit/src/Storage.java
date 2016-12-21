@@ -8,39 +8,20 @@ import java.io.IOException;
  * @author Figali Taho
  *
  */
-<<<<<<< HEAD
-/**
- * @author Figali Taho
- *
- */
-/**
- * @author Figali Taho
- *
- */
 public class Storage {
 	static final int SIZE_OF_GRID = 10;
 	static final int EASY = 1;
 	static final int MED = 2;
 	static final int HARD = 3;
-	
-	private String playGameFile;
-	private String settingsFile;
-=======
-public class Storage {
-	static final int SIZE_OF_GRID = 10;
-	static final int EASY = 1;
-	static final int MED = 2;
-	static final int HARD = 3;
-	
+		
 	private String playGameFile;
 	private String settingsFile;   
->>>>>>> refs/remotes/origin/crossit-general
 	private String highScoresFile;
 	
-	private Storage(){
-		this.playGameFile = "";
-		this.settingsFile = "";
-		this.highScoresFile = "";
+	protected Storage(){
+		this.playGameFile = "storage/play_game_file";
+		this.settingsFile = "storage/settings_file";
+		this.highScoresFile = "storage/high_scores_file";		
 	}
 	
 	private Storage(String playGameFile, String settingsFile, String highScoresFile){
@@ -122,25 +103,30 @@ public class Storage {
 	}
 	
 	// Returns an array of game objects according to level of difficulty. 
-	protected int[][] getArray(int easy_med_hard){
+	protected int[][] getVehicleSet(int easy_med_hard){
 		int[][] grid = new int[SIZE_OF_GRID][SIZE_OF_GRID];
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;
-		try{
+		try{			
 			fileReader = new FileReader(this.playGameFile);
 			bufferedReader = new BufferedReader(fileReader);
+			System.out.println("fine till here");
 			String str = "";
 			bufferedReader = new BufferedReader(new FileReader(this.playGameFile));
 			if (easy_med_hard == EASY){
 				// generate from the easy set
-				int counter = 0;
-				while((str = bufferedReader.readLine()) != null && counter <= 9){
+				int counter = 0;					
+				while((str = bufferedReader.readLine()) != null && counter <= 9){					
 					for( int j = 0; j < SIZE_OF_GRID; j++){
 						char ch = str.charAt(j); 
 						if(ch == '1'){
 							grid[counter][j] = 1;
 						}else if(ch == '0'){
 							grid[counter][j] = 0;
+						}else if (ch == '2'){
+							grid[counter][j] = 2;
+						}else if (ch == '3'){
+							grid[counter][j] = 3;
 						}
 					}
 					counter++;
