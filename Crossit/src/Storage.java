@@ -8,14 +8,6 @@ import java.io.IOException;
  * @author Figali Taho
  *
  */
-/**
- * @author Figali Taho
- *
- */
-/**
- * @author Figali Taho
- *
- */
 public class Storage {
 	static final int SIZE_OF_GRID = 10;
 	static final int EASY = 1;

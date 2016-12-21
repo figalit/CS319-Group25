@@ -9,12 +9,12 @@ public class Main extends Frame{
 			SwingUtilities.invokeAndWait(new Runnable(){
 				@Override
 				public void run(){
-					new Frame();
+					Frame.switchPanel(new MainMenu());
 				}
 			});
 		} catch (InvocationTargetException | InterruptedException e) {
 			// TODO Auto-generated catch block
+		}finally{
 		}
-		Frame.switchPanel(new MainMenu());
 	}
 }
