@@ -72,6 +72,11 @@ public class GameEngine {
 	}
 	
 	// TODO: check if this is ok.
+	protected GameGrid getGameGrid()
+	{
+		return this.gameGrid;
+	}
+	
 	protected GameEngine getGameEngine(){
 		return this;
 	}

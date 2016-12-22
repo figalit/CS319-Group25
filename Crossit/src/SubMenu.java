@@ -12,12 +12,16 @@ import javax.swing.JButton;
 public class SubMenu extends Menu implements ActionListener {
 
     protected JButton backButton = new JButton();
-    protected BufferedImage back;    
+    protected BufferedImage back;   
     
-    protected SubMenu(){
+    protected GameGrid gameGrid;
+    
+    protected SubMenu(GameGrid gameGrid){
         
         try { back = ImageIO.read(getClass().getResourceAsStream("/back.png")); } 
         catch(IOException e) {    e.printStackTrace(); }
+        
+        this.gameGrid = gameGrid;
         
         repaint();
         
@@ -42,7 +46,7 @@ public class SubMenu extends Menu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
             
             if (e.getSource() == backButton) {
-                Frame.switchPanel(new MainMenu());
+                Frame.switchPanel(new MainMenu(gameGrid));
             }
     }
     

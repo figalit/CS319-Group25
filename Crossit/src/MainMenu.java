@@ -20,6 +20,8 @@ public class MainMenu extends Menu implements ActionListener{
 	private BufferedImage settings;
 	private BufferedImage help;
 	
+	private GameGrid gameGrid;
+	
 	//Button variables
 	private JButton newGameButton = new JButton("");
 	private JButton highscoresButton = new JButton("");
@@ -28,7 +30,7 @@ public class MainMenu extends Menu implements ActionListener{
 	private JButton quitButton = new JButton("");
 	private JButton helpButton = new JButton("");
 	
-	protected MainMenu() {
+	protected MainMenu(GameGrid gameGrid) {
 		super();
 		//Adding the source images
 		try {
@@ -43,6 +45,8 @@ public class MainMenu extends Menu implements ActionListener{
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		this.gameGrid = gameGrid;
 		
 		repaint();
 		
@@ -120,23 +124,24 @@ public class MainMenu extends Menu implements ActionListener{
 			
 			if (e.getSource() == newGameButton) {
 				//Start game
+				Frame.switchPanel(new GameScreenPanel(gameGrid));
 			}
 			
 			if (e.getSource() == highscoresButton){
 				//Switch func, located in frame
-				Frame.switchPanel(new Highscores());
+				Frame.switchPanel(new Highscores(gameGrid));
 			}
 			
 			if (e.getSource() == helpButton) {
-				Frame.switchPanel(new Help());
+				Frame.switchPanel(new Help(gameGrid));
 			}
 			
 			if (e.getSource() == settingsButton){
-				Frame.switchPanel(new Settings());
+				Frame.switchPanel(new Settings(gameGrid));
 			}
 			
 			if (e.getSource() == creditsButton){
-				Frame.switchPanel(new Credits());
+				Frame.switchPanel(new Credits(gameGrid));
 			}
 
 			if (e.getSource() == quitButton){

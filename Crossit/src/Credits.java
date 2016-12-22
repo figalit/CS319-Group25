@@ -8,8 +8,8 @@ public class Credits extends SubMenu {
 
 	private BufferedImage creditsInfo, version;
 	
-	protected Credits() {
-		super();
+	protected Credits(GameGrid gameGrid) {
+		super(gameGrid);
 		
 		try {
 			creditsInfo = ImageIO.read(getClass().getResourceAsStream("/creditsInfo.png"));		
