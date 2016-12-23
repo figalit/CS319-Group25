@@ -6,10 +6,10 @@ import javax.imageio.ImageIO;
 public abstract class GameObject {
 	protected BufferedImage image;
 	
-	public BufferedImage getImage() {
+	protected BufferedImage getImage() {
 		return image;
 	}
-	public void setImage(String imageName){
+	protected void setImage(String imageName){
 		 try { image = ImageIO.read(getClass().getResourceAsStream("/" + imageName)); } 
 	        catch(IOException e) {    e.printStackTrace(); }
 	  }	

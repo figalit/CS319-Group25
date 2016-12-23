@@ -121,6 +121,15 @@ public class GameGrid
 				System.out.println();
 		}
 	}
+	protected boolean detectCollision()
+	{
+		for( int i = 0; i < GRID_SIZE; i++)
+			for( int j = 0; j < GRID_SIZE; j++)
+				if(gameMatrix[i][j].detectCollision())
+					return true;
+		return false;
+	}
+	
 	protected boolean moveCharacter(int direction)
 	{
 		switch(direction)
@@ -171,5 +180,10 @@ public class GameGrid
 
 	public void setCharPosition(Position charPosition) {
 		this.charPosition = charPosition;
+	}
+	
+	public Part[][] getGameMatrix()
+	{
+		return this.gameMatrix;
 	}
 }

@@ -17,9 +17,7 @@ public class RoadPart extends Part{
 		this.setVehicle(vehicle);
 	}
 	
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
+	
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
@@ -30,15 +28,11 @@ public class RoadPart extends Part{
 			return true;
 		return false;
 	}
-	public Character getCharacter() {
-		return character;
-	}
+	
 	public void setCharacter(Character character) {
 		this.character = character;
 	}
-	public Collectable getCollectable() {
-		return collectable;
-	}
+	
 	public void setCollectable(Collectable collectable) {
 		this.collectable = collectable;
 	}
