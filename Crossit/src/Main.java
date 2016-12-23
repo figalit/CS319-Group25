@@ -5,7 +5,6 @@ import javax.swing.SwingUtilities;
 public class Main extends Frame{
 
 	public static void main(String[] args) {
-
 		try{
 			SwingUtilities.invokeAndWait(new Runnable(){
 				@Override
@@ -13,7 +12,6 @@ public class Main extends Frame{
 					//Frame.switchPanel(new MainMenu(grid));
 					GameEngine gameEngine = new GameEngine();
 					//gameEngine.load();
-
 				}
 			});
 		}catch (InvocationTargetException | InterruptedException e){

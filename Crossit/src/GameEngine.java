@@ -1,3 +1,4 @@
+import java.awt.event.KeyEvent;
 import java.util.Timer;
 
 /**
@@ -21,7 +22,8 @@ public class GameEngine {
 	private Storage storage;
 	Timer timer;
 	UpdateGameScheduler scheduler;
-
+	InputManager inputManager;
+	
 	protected GameEngine(){
 		this.stageNo = INIT_NO;
 		this.stageScore = INIT_NO;
@@ -47,8 +49,8 @@ public class GameEngine {
 	    gameGrid.generate(1);
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
+		inputManager = new InputManager(this);
 		load();
-
 	}
 	
 	protected GameEngine(int gameSpeed, int initLifeCount, int currentEffect){
@@ -70,13 +72,30 @@ public class GameEngine {
 		scheduler = new UpdateGameScheduler(this);
 
 	}
+	protected void move(int where){
+		switch(where)
+		{
+		case InputManager.UP: // up
+			gameGrid.moveCharacter(InputManager.UP);
+			break;
+		case InputManager.LEFT: // up
+			gameGrid.moveCharacter(InputManager.LEFT);
+			break;
+		case InputManager.RIGHT: // up
+			gameGrid.moveCharacter(InputManager.RIGHT);
+			break;
+		case InputManager.DOWN: // up
+			gameGrid.moveCharacter(InputManager.DOWN);
+			break;
+		}
+	}
 	
 	protected void load(){
 		// do some loading of the screen or maybe some listeners? 
 		timer.schedule(scheduler, 0, 1000);
 	}
 	protected void update(){
-		gameGrid.update();
+		//gameGrid.update();
 		gameGrid.print();
 	}
 	protected boolean checkCollision(){
@@ -91,18 +110,15 @@ public class GameEngine {
 	}
 	protected void applyCollectable(int perk){
 		
-	}
-	
+	}	
 	// TODO: check if this is ok.
 	protected GameGrid getGameGrid()
 	{
 		return this.gameGrid;
 	}
-	
 	protected GameEngine getGameEngine(){
 		return this;
 	}
-	
 	protected int durationLeft(){
 		return 0; // TODO: change this
 	}
