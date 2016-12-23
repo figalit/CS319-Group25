@@ -1,3 +1,5 @@
+import java.util.Timer;
+
 /**
  * @date 19.12.2016
  * @author CrossIt developers!
@@ -17,7 +19,9 @@ public class GameEngine {
 
 	private GameGrid gameGrid;
 	private Storage storage;
-	
+	Timer timer;
+	UpdateGameScheduler scheduler;
+
 	protected GameEngine(){
 		this.stageNo = INIT_NO;
 		this.stageScore = INIT_NO;
@@ -27,9 +31,9 @@ public class GameEngine {
 		this.currentMoney = INIT_NO;
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
-		int[][] a = storage.getVehicleSet(Storage.EASY);
+		//int[][] a = storage.getVehicleSet(Storage.EASY);
 		/*for(int i = 0; i < a.length; i++){
-			for(inst j = 0; j < a[i].length; j++){
+			for(int j = 0; j < a[i].length; j++){
 				System.out.print(a[i][j] + " ");
 			}
 			System.out.println();
@@ -37,7 +41,10 @@ public class GameEngine {
 		this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
 									 storage.getVehicleSet(Storage.MED),
 									 storage.getVehicleSet(Storage.HARD));
+		timer = new Timer();
+		scheduler = new UpdateGameScheduler(this);
 	}
+	
 	protected GameEngine(int gameSpeed, int initLifeCount, int currentEffect){
 		this.stageNo = INIT_NO;
 		this.stageScore = INIT_NO;
@@ -46,19 +53,27 @@ public class GameEngine {
 		this.currentLife = initLifeCount;
 		this.currentMoney = INIT_NO;
 		this.currentEffect = currentEffect; // the current effect of the game? 
-		this.storage = new Storage();
-		this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
+		//this.storage = new Storage();
+		int[] A ={0,1,0,0,0,1,0,1,0,0}; 
+	    int[][] easy = {A,A,A,A,A,A,A,A,A,A};
+		/*this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
 									 storage.getVehicleSet(Storage.MED),
-									 storage.getVehicleSet(Storage.HARD));
+									 storage.getVehicleSet(Storage.HARD));*/
+	    this.gameGrid = new GameGrid(easy, easy, easy);
+		timer = new Timer();
+		scheduler = new UpdateGameScheduler(this);
 	}
 	
 	protected void load(){
-		
+		// do some loading of the screen or maybe some listeners? 
+		timer.schedule(scheduler, 0, 1000);
 	}
 	protected void update(){
-		
+		gameGrid.update();
+		gameGrid.print();
 	}
 	protected boolean checkCollision(){
+		
 		return false; // TODO: change
 	}
 	protected void reduceLife(){
