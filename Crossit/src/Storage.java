@@ -19,6 +19,7 @@ public class Storage {
 	private String playGameFile;
 	private String settingsFile;   
 
+
 	private String highScoresFile;
 	
 	protected Storage(){

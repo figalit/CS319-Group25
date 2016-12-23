@@ -1,3 +1,7 @@
+import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.SwingUtilities;
+
 public class Main extends Frame{
 	
 	public static void main(String[] args) {
@@ -23,6 +27,7 @@ public class Main extends Frame{
 		 	//grd.update();
 		 	System.out.println('\n');
 		 	grd.print();
+
 	}
 	
 }

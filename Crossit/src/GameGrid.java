@@ -69,7 +69,7 @@ public class GameGrid
 						case 1: gameMatrix[i][j] = new RoadPart(new Motorcycle(newDirection)); break;
 						case 2: gameMatrix[i][j] = new RoadPart(new Car(newDirection)); break;
 						case 3: gameMatrix[i][j] = new RoadPart(new Bus(newDirection)); break;
-					}
+					}	
 				}
 			}
 			else
@@ -182,6 +182,7 @@ public class GameGrid
 		this.charPosition = charPosition;
 	}
 	
+
 	public Part[][] getGameMatrix()
 	{
 		return this.gameMatrix;

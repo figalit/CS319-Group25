@@ -1,8 +1,8 @@
 
 public class Highscores extends SubMenu {
 
-	protected Highscores() {
-		super();
+	protected Highscores(GameGrid gameGrid) {
+		super(gameGrid);
 		repaint();
 			
 	}
