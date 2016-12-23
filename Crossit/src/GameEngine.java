@@ -31,8 +31,10 @@ public class GameEngine {
 		this.currentMoney = INIT_NO;
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
+
 		int[] A ={0,1,0,0,0,1,0,1,0,0}; 
 	    int[][] easy = {A,A,A,A,A,A,A,A,A,A};
+//github.com/figalit/CS319-Group25.git
 		//int[][] a = storage.getVehicleSet(Storage.EASY);
 		/*for(int i = 0; i < a.length; i++){
 			for(int j = 0; j < a[i].length; j++){
@@ -40,11 +42,13 @@ public class GameEngine {
 			}
 			System.out.println();
 		}*/
+
 	    this.gameGrid = new GameGrid(easy, easy, easy);
 	    gameGrid.generate(1);
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
 		load();
+
 	}
 	
 	protected GameEngine(int gameSpeed, int initLifeCount, int currentEffect){
@@ -64,7 +68,7 @@ public class GameEngine {
 	    this.gameGrid = new GameGrid(easy, easy, easy);
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
-		
+
 	}
 	
 	protected void load(){
