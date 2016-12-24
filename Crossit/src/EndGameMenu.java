@@ -59,6 +59,8 @@ public class EndGameMenu extends SubMenu {
 	
 	public void actionPerformed(ActionEvent e) {
 		
+		super.actionPerformed(e);
+		
 		if (e.getSource() == restartButton) {
 			//Start game
 			gameEngine.load();
