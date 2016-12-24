@@ -1,4 +1,8 @@
-import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import javafx.concurrent.Task;
 
 /**
  * @date 19.12.2016
@@ -21,7 +25,7 @@ public class GameEngine {
 
 	private GameGrid gameGrid;
 	private Storage storage;
-	Timer timer;
+	ScheduledExecutorService service ;
 	UpdateGameScheduler scheduler;
 
 	
@@ -34,14 +38,13 @@ public class GameEngine {
 		this.currentMoney = INIT_NO;
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
-		int[] A ={0,2,2,0,0,1,0,1,0,0}; 
-	     int[][] easy = {A,A,A,A,A,A,A,A,A,A};
-	    this.gameGrid = new GameGrid(easy,
-	    		easy,
-	    		easy);
-	    
-		timer = new Timer();
-		scheduler = new UpdateGameScheduler(this);
+	    this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
+				 storage.getVehicleSet(Storage.MED),
+				 storage.getVehicleSet(Storage.HARD));
+	    gameGrid.generate(1);
+	    service = Executors.newSingleThreadScheduledExecutor();
+	    scheduler = new UpdateGameScheduler(this);
+
 	}
 	
 	protected void move(int where){
@@ -65,12 +68,7 @@ public class GameEngine {
 	protected void load(){
 		gameGrid.generate(INIT_NO+1);
 		// do some loading of the screen or maybe some listeners? 
-		timer.schedule(scheduler, 1000, this.gameSpeed);
-	}
-	protected void load(int gameSpeed){
-		// do some loading of the screen or maybe some listeners? 
-		//timer.cancel();
-		timer.schedule(scheduler, 1000, gameSpeed);
+		service.scheduleAtFixedRate(scheduler, 100, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
 	protected void update(){
 		gameGrid.update();
@@ -103,14 +101,14 @@ public class GameEngine {
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
 		this.gameSpeed = this.gameSpeed - 150;
-		load( this.gameSpeed);
+		this.service.scheduleAtFixedRate(scheduler, 0, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
 	protected void applyCollectable(int perk){
 		
 	}	
 	protected void endGame() {
 		// does something about the death menu.
-		
+		System.out.println("");
 	}
 	// TODO: check if this is ok.
 	protected GameGrid getGameGrid()

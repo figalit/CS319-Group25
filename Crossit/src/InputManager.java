@@ -26,12 +26,10 @@ public class InputManager extends JPanel implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		int id = e.getID();
-		System.out.println("---" + id + "---");
 		switch(id)
 		{
 		case KeyEvent.VK_UP: // up
 			gameEngine.move(UP);
-			//System.out.println("\n\nPressed UP\n\n");
 			break;
 		case KeyEvent.VK_LEFT: // left
 			gameEngine.move(LEFT);

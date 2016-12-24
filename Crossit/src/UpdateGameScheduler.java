@@ -1,7 +1,7 @@
 import java.util.TimerTask;
 
 
-public class UpdateGameScheduler extends TimerTask{
+public class UpdateGameScheduler implements Runnable{
 	private GameEngine gameEngine;
 	
 	public UpdateGameScheduler(GameEngine gameEngine){
