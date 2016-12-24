@@ -87,34 +87,43 @@ public class GameEngine {
 			{				
 			case 0: // coin
 				this.stageScore += 20;
-				gsp.setScore(this.totalScore);
+				gsp.setScore(this.stageScore);
+				break;
 			case 1: // shield
 				// this is probably not to be implemented yet.
 				this.stageScore += 20;
 				msg = "You received a shield. Right now we'll increase your score!";
+				break;
 			case 2: // one less life 
 				this.currentLife -= 1;
 				msg = "You received a life" ;
+				break;
 			case 3: // magnet
 				msg = "You received a magnet. Right now we'll increase your score!";
 				this.stageScore += 20;
+				break;
 			case 4: // teleportation
 				this.gameGrid.teleportCharacter();
 				msg = "Player will teleport!";
 				this.stageScore += 20;
+				break;
 			case 5: // faster traffic
 				msg = "We made the game faster!";
 				this.gameSpeed += 200;
+				break;
 			case 6: // reverse control
 				//this.gameGrid.reverseVehicleControl();
 				msg = "we didnt reverse control";
 				this.totalScore += 20;
+				break;
 			case 7: // extralife 
 				this.currentLife += 1;
+				break;
 			case 8: // slow the traffic
 				msg = "We made the game slower!";
 				this.gameSpeed -= 200;
-			default : ;
+				break;
+			default :break; 
 			}
 			gsp.setScore(this.totalScore);
 		}
@@ -140,6 +149,7 @@ public class GameEngine {
 		this.stageNo++;
 		this.gameSpeed = this.gameSpeed;
 		this.service.scheduleAtFixedRate(scheduler, 0, 5*this.gameSpeed, TimeUnit.MILLISECONDS);
+		stageScore = 0;
 	}
 	protected void applyCollectable(int perk){
 		
