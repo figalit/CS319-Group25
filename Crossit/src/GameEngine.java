@@ -58,6 +58,7 @@ public class GameEngine {
 
 	protected void load(){
 		gameGrid.generate(INIT_NO+1);
+		currentLife = 3;
 		// do some loading of the screen or maybe some listeners? 
 		service.scheduleAtFixedRate(scheduler, 100, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
@@ -95,8 +96,8 @@ public class GameEngine {
 		// generate new stage.
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
-		this.gameSpeed = this.gameSpeed - 50;
-		this.service.scheduleAtFixedRate(scheduler, 0, this.gameSpeed, TimeUnit.MILLISECONDS);
+		this.gameSpeed = this.gameSpeed ;
+		this.service.scheduleAtFixedRate(scheduler, 0, 2*this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
 	protected void applyCollectable(int perk){
 		
