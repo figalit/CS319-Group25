@@ -2,7 +2,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import javafx.concurrent.Task;
+
 
 /**
  * @date 19.12.2016
@@ -19,6 +19,14 @@ public class GameEngine {
 	private int totalScore;
 	private int gameSpeed;
 	private int currentLife;
+	protected int getCurrentLife() {
+		return currentLife;
+	}
+
+	protected void setCurrentLife(int currentLife) {
+		this.currentLife = currentLife;
+	}
+
 	private int currentMoney;
 	private int currentEffect;
 	private GameScreenPanel gsp;
@@ -47,7 +55,7 @@ public class GameEngine {
 
 	}
 	
-	protected void move(int where){
+/*	protected void move(int where){
 		switch(where)
 		{
 		case InputManager.UP: // up
@@ -64,7 +72,7 @@ public class GameEngine {
 			break;
 		}
 	}
-	
+	*/
 	protected void load(){
 		gameGrid.generate(INIT_NO+1);
 		// do some loading of the screen or maybe some listeners? 
@@ -80,6 +88,10 @@ public class GameEngine {
 				// puts character to start of stage
 				gameGrid.resetCharacter();
 			}
+		}
+		if(gameGrid.detectCollectable() > 0)
+		{
+			//apply special effect
 		}
 		if(gameGrid.checkEndOfStage()){
 			endStage();

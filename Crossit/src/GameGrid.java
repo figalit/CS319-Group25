@@ -101,6 +101,7 @@ public class GameGrid
 			}
 		}
 		//add coins and mystery boxes
+		putColectables();
 	}
 	protected void update()	//may generate 'not-deep copy' problems
 	{
@@ -139,6 +140,25 @@ public class GameGrid
 				if(gameMatrix[i][j].detectCollision())
 					return true;
 		return false;
+	}
+	protected int detectCollectable()
+	{
+		for( int i = 0; i < GRID_SIZE; i++)
+			for( int j = 0; j < GRID_SIZE; j++)
+				if(gameMatrix[i][j].detectCollectable() >= 0)
+					return gameMatrix[i][j].detectCollectable();
+		return -1;
+	}
+	
+	protected void putColectables()
+	{
+		Coin coin1 = new Coin();
+		//Coin coin2 = new Coin();
+		
+		int x = 1 + (int)(Math.random() * 9);
+		int y = 1 + (int)(Math.random() * 9);
+		
+		gameMatrix[x][y].setCollectable(coin1);
 	}
 	
 	protected boolean moveCharacter(int direction)

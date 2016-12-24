@@ -40,4 +40,15 @@ public abstract class Part extends GameObject
 	protected Vehicle getVehicle() {
 		return vehicle;
 	}
+	protected int detectCollectable()
+	{
+		if(getCollectable() != null && getCharacter() != null)
+		{
+			int temp = collectable.getValue();
+			setCollectable(null);
+			return temp;
+		}	
+		return -1;
+	}
 }
+

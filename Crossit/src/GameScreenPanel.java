@@ -23,14 +23,16 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 	static final int DOWN = 3;
 	static final int RIGHT = 4;
 	private int score;
-
-    protected GameScreenPanel(GameGrid gameGrid) {
+	private GameEngine gameEngine;
+	
+    protected GameScreenPanel(GameEngine gameEngine) {
        
     	JPanel scorePanel = new JPanel();
     	scorePanel.add(new JLabel("Score: " + score));
     	
-       this.gameGrid = gameGrid;
-       this.gameMatrix = gameGrid.getGameMatrix();
+       this.gameEngine = gameEngine;
+       this.gameMatrix = gameEngine.getGameGrid().getGameMatrix();
+       this.gameGrid = gameEngine.getGameGrid();
        addKeyListener(this);
        this.add(scorePanel);
         try {
@@ -78,6 +80,8 @@ public class GameScreenPanel extends JPanel implements KeyListener{
                 {
                 	if(gameMatrix[i][j].getVehicle() != null)
                        		g.drawImage(gameMatrix[i][j].getVehicle().getImage(), i * 100, j * 90, 100, 90, null);
+                	if(gameMatrix[i][j].getCollectable() != null)
+                   		g.drawImage(gameMatrix[i][j].getCollectable().getImage(), i * 100, j * 90, 100, 90, null);
                 	if(gameMatrix[i][j].getCharacter() != null)
                    		g.drawImage(gameMatrix[i][j].getCharacter().getImage(), i * 100, j * 90, 100, 90, null);
                 }
@@ -85,7 +89,6 @@ public class GameScreenPanel extends JPanel implements KeyListener{
         }
         
     }
-	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		int button = e.getKeyCode();
@@ -93,7 +96,6 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 		{
 		case KeyEvent.VK_UP: // up
 			gameGrid.moveCharacter(UP);
-			System.out.println("\n\nPressed UP\n\n");
 			break;
 		case KeyEvent.VK_LEFT: // left
 			gameGrid.moveCharacter(LEFT);
@@ -105,14 +107,22 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 			gameGrid.moveCharacter(DOWN);
 			break;
 		}
+		if(gameEngine.checkCollision()){
+			gameEngine.reduceLife();
+			if(gameEngine.getCurrentLife() < 1){
+				gameEngine.endGame();
+			}else{
+				// puts character to start of stage
+				gameGrid.resetCharacter();
+			}
+		}
 		updateGameScreen();
 	}
-	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
+	
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		

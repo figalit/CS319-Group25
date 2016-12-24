@@ -7,12 +7,12 @@ public class Main extends Frame{
 	public static void main(String[] args) {
 		try{
 			SwingUtilities.invokeAndWait(new Runnable(){
-				@Override
+				
 				public void run(){
 					
 					GameEngine gameEngine = new GameEngine();
 					
-					GameScreenPanel gsp = new GameScreenPanel(gameEngine.getGameGrid());
+					GameScreenPanel gsp = new GameScreenPanel(gameEngine);
 					gameEngine.setGsp(gsp);
 					Frame.switchPanel(new MainMenu(gameEngine));
 					//Frame.switchPanel(gsp);

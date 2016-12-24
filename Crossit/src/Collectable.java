@@ -2,14 +2,19 @@
 public class Collectable extends GameObject 
 {
 	private int value;
-	public Collectable(int value)
+	protected Collectable(int value)
 	{
 		setValue(value);
 	}
-	public int getValue() {
+	protected int getValue() {
 		return value;
 	}
-	public void setValue(int value) {
+	protected void setValue(int value) {
 		this.value = value;
+	}
+	
+	protected void setImage(String addr)
+	{
+		super.setImage(addr);
 	}
 }
