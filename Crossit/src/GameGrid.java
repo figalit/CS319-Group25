@@ -139,7 +139,7 @@ public class GameGrid
 				{ 
 					charPosition.setY(charPosition.getY()-1);
 					gameMatrix[charPosition.getX()][charPosition.getY()].setCharacter(gameMatrix[charPosition.getX()][charPosition.getY()+1].moveCharacter());
-					player.changeDirection("U");
+					player.changeDirection("1");
 					return true;
 				}
 				return false;
