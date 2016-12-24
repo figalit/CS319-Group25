@@ -67,7 +67,7 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		int button = e.getID();
+		int button = e.getKeyCode();
 		switch(button)
 		{
 		case KeyEvent.VK_UP: // up

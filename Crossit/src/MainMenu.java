@@ -125,6 +125,7 @@ public class MainMenu extends Menu implements ActionListener{
 			if (e.getSource() == newGameButton) {
 				//Start game
 				Frame.switchPanel(new GameScreenPanel(gameGrid));
+				
 			}
 			
 			if (e.getSource() == highscoresButton){

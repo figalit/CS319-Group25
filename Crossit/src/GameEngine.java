@@ -96,7 +96,7 @@ public class GameEngine {
 		timer.schedule(scheduler, 0, 1000);
 	}
 	protected void update(){
-		//gameGrid.update();
+		gameGrid.update();
 		gameGrid.print();
 	}
 	protected boolean checkCollision(){
