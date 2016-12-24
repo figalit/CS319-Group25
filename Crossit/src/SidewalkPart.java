@@ -1,25 +1,40 @@
 
 public class SidewalkPart extends Part {
+	private int theme;
 	
-	public SidewalkPart()
+	public SidewalkPart(int theme)
 	{
 		setCollectable(null);
 		setCharacter(null);
 		this.vehicle = null;
-		super.setImage("grass.png");
+		this.theme = theme;
+		if(theme==0)
+			super.setImage("grass.png");
+		if(theme==1)
+			super.setImage("desert.png");
 	}
-	public SidewalkPart(Character character)
+	public SidewalkPart(Character character, int theme)
 	{
 		setCollectable(null);
 		setCharacter(character);
 		this.vehicle = null;
-		super.setImage("grass.png");
+		this.theme = theme;
+		if(theme == 0)
+			super.setImage("grass.png");
+		if(theme==1)
+			super.setImage("desert.png");
+		
 	}
-	public SidewalkPart(Character character, Collectable collectable)
+	public SidewalkPart(Character character, Collectable collectable, int theme)
 	{
 		setCollectable(collectable);
 		setCharacter(character);
 		this.vehicle = null;
+		this.theme = theme;
+		if(theme == 0)
+			super.setImage("grass.png");
+		if(theme==1)
+			super.setImage("desert.png");
 	}
 	public SidewalkPart(Collectable collectable)
 	{

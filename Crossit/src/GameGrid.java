@@ -11,16 +11,27 @@ public class GameGrid
 	private Position charPosition;
 	protected Character player;
 	protected ArrayList hats;
+	protected int theme;
 	
+	public int getTheme() {
+		return theme;
+	}
+
+	public void setTheme(int theme) {
+		this.theme = theme;
+	}
+
 	public GameGrid(int[][] easyVehicleSet, int[][] normalVehicleSet, int[][] hardVehicleSet)
 	{
 
 		hats = new ArrayList();
 		hats.add("player.png");
+		hats.add("player1.png");
 		this.easyVehicleSet = easyVehicleSet;
 		this.normalVehicleSet = normalVehicleSet;
 		this.hardVehicleSet = hardVehicleSet;
 		directions = new int[10];
+		theme = 1;
 
 		setCharPosition(null);
 		player = new Character(hats);
@@ -32,12 +43,12 @@ public class GameGrid
 		setCharPosition(new Position(4,9));
 		for(int i = 0; i < GRID_SIZE; i++)
 			if(i == 4)
-				gameMatrix[i][GRID_SIZE-1] = new SidewalkPart(player);//putting character in to position
+				gameMatrix[i][GRID_SIZE-1] = new SidewalkPart(player, theme);//putting character in to position
 			else
-				gameMatrix[i][GRID_SIZE-1] = new SidewalkPart();
+				gameMatrix[i][GRID_SIZE-1] = new SidewalkPart(theme);
 		
 		for(int i = 0; i < GRID_SIZE; i++)
-			gameMatrix[i][0] = new SidewalkPart();
+			gameMatrix[i][0] = new SidewalkPart(theme);
 		if(no <= 5)
 		{
 			for(int j = 1; j < GRID_SIZE-1; j++)

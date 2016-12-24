@@ -34,12 +34,12 @@ public class GameEngine {
 		this.currentMoney = INIT_NO;
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
-		int[] A ={0,1,0,0,0,1,0,1,0,0}; 
+		int[] A ={0,2,2,0,0,1,0,1,0,0}; 
 	     int[][] easy = {A,A,A,A,A,A,A,A,A,A};
 	    this.gameGrid = new GameGrid(easy,
 	    		easy,
 	    		easy);
-	    gameGrid.generate(1);
+	    
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
 	}
@@ -63,6 +63,7 @@ public class GameEngine {
 	}
 	
 	protected void load(){
+		gameGrid.generate(INIT_NO+1);
 		// do some loading of the screen or maybe some listeners? 
 		timer.schedule(scheduler, 1000, this.gameSpeed);
 	}
