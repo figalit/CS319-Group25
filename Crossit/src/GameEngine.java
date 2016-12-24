@@ -57,11 +57,9 @@ public class GameEngine {
 	
 	protected void load(){
 		gameGrid.generate(INIT_NO+1);
-<<<<<<< HEAD
+
 		currentLife = 3;
-=======
-		this.currentLife = 3;
->>>>>>> branch 'crossit-general' of https://github.com/figalit/CS319-Group25.git
+
 		// do some loading of the screen or maybe some listeners? 
 		service.scheduleAtFixedRate(scheduler, 100, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
@@ -135,13 +133,10 @@ public class GameEngine {
 		// generate new stage.
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
-<<<<<<< HEAD
+
 		this.gameSpeed = this.gameSpeed ;
 		this.service.scheduleAtFixedRate(scheduler, 0, 2*this.gameSpeed, TimeUnit.MILLISECONDS);
-=======
-		this.gameSpeed = this.gameSpeed - 150;
-		this.service.scheduleAtFixedRate(scheduler, 0, this.gameSpeed, TimeUnit.MILLISECONDS);
->>>>>>> branch 'crossit-general' of https://github.com/figalit/CS319-Group25.git
+
 	}
 	
 	protected void endGame() {
