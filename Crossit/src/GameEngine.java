@@ -19,6 +19,8 @@ public class GameEngine {
 	private int totalScore;
 	private int gameSpeed;
 	private int currentLife;
+	String msg;
+	
 	protected int getCurrentLife() {
 		return currentLife;
 	}
@@ -27,7 +29,6 @@ public class GameEngine {
 		this.currentLife = currentLife;
 	}
 
-	private int currentMoney;
 	private int currentEffect;
 	private GameScreenPanel gsp;
 
@@ -43,7 +44,6 @@ public class GameEngine {
 		this.totalScore = INIT_NO;
 		this.gameSpeed = INIT_GAME_SPEED;
 		this.currentLife = INIT_LIFE_COUNT;
-		this.currentMoney = INIT_NO;
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
 	    this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
@@ -52,18 +52,23 @@ public class GameEngine {
 	    gameGrid.generate(1);
 	    service = Executors.newSingleThreadScheduledExecutor();
 	    scheduler = new UpdateGameScheduler(this);
-
+	    msg = "";
 	}
 	
-
 	protected void load(){
 		gameGrid.generate(INIT_NO+1);
+<<<<<<< HEAD
 		currentLife = 3;
+=======
+		this.currentLife = 3;
+>>>>>>> branch 'crossit-general' of https://github.com/figalit/CS319-Group25.git
 		// do some loading of the screen or maybe some listeners? 
 		service.scheduleAtFixedRate(scheduler, 100, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
 	protected void update(){
 		gameGrid.update();
+		this.totalScore += 1;
+		gsp.setScore(this.totalScore);
 		if(checkCollision()){
 			reduceLife();
 			if(this.currentLife < 1){
@@ -73,9 +78,43 @@ public class GameEngine {
 				gameGrid.resetCharacter();
 			}
 		}
-		if(gameGrid.detectCollectable() > 0)
+		if(gameGrid.detectCollectable() >= 0)
 		{
-			//apply special effect
+			int collectableValue = gameGrid.detectCollectable();
+			// Coin adds 20 points to the score.
+			switch (collectableValue)
+			{				
+			case 0: // coin
+				this.totalScore += 20;
+				gsp.setScore(this.totalScore);
+			case 1: // shield
+				// this is probably not to be implemented yet.
+				this.totalScore += 20;
+				msg = "You received a shield. Right now we'll increase your score!";
+			case 2: // one less life 
+				this.currentLife -= 1;
+				msg = "You received a life" ;
+			case 3: // magnet
+				msg = "You received a magnet. Right now we'll increase your score!";
+				this.totalScore += 20;
+			case 4: // teleportation
+				//this.gameGrid.applyTeleportation();
+				msg = "We'll increase your score!";
+				this.totalScore += 20;
+			case 5: // faster traffic
+				msg = "We made the game faster!";
+				this.gameSpeed += 200;
+			case 6: // reverse control
+				//this.gameGrid.reverseVehicleControl();
+				msg = "we didnt reverse control";
+				this.totalScore += 20;
+			case 7: // extralife 
+				this.currentLife += 1;
+			case 8: // slow the traffic
+				msg = "We made the game slower!";
+				this.gameSpeed -= 200;
+			default : ;
+			}
 		}
 		if(gameGrid.checkEndOfStage()){
 			endStage();
@@ -96,12 +135,15 @@ public class GameEngine {
 		// generate new stage.
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
+<<<<<<< HEAD
 		this.gameSpeed = this.gameSpeed ;
 		this.service.scheduleAtFixedRate(scheduler, 0, 2*this.gameSpeed, TimeUnit.MILLISECONDS);
+=======
+		this.gameSpeed = this.gameSpeed - 150;
+		this.service.scheduleAtFixedRate(scheduler, 0, this.gameSpeed, TimeUnit.MILLISECONDS);
+>>>>>>> branch 'crossit-general' of https://github.com/figalit/CS319-Group25.git
 	}
-	protected void applyCollectable(int perk){
-		
-	}	
+	
 	protected void endGame() {
 		Frame.switchPanel(new EndGameMenu(this));
 	}
@@ -123,5 +165,14 @@ public class GameEngine {
 
 	public void setGsp(GameScreenPanel gsp) {
 		this.gsp = gsp;
+	}
+	public int getLife(){
+		return this.currentLife;
+	}
+	public String getMsg(){
+		return this.msg;
+	}
+	public int getStage(){
+		return this.stageNo;
 	}
 }
