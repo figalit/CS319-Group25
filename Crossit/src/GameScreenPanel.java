@@ -50,6 +50,7 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 		this.add(scorePanel);
 		
 		repaint();
+		
 	}
 	public void addNotify() {
 		super.addNotify();
