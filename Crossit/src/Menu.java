@@ -11,7 +11,7 @@ public class Menu extends JPanel {
 	private BufferedImage road;
 	
 	//temporary variable
-	private int theme = 1;
+	private static int theme = 1;
 
 	protected Menu() {
 		

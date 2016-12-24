@@ -7,6 +7,7 @@ import java.awt.image.ImageConsumer;
 import java.awt.image.TileObserver;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.Graphics;
@@ -21,12 +22,17 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 	static final int LEFT = 2;
 	static final int DOWN = 3;
 	static final int RIGHT = 4;
+	private int score;
 
     protected GameScreenPanel(GameGrid gameGrid) {
        
+    	JPanel scorePanel = new JPanel();
+    	scorePanel.add(new JLabel("Score: " + score));
+    	
        this.gameGrid = gameGrid;
        this.gameMatrix = gameGrid.getGameMatrix();
        addKeyListener(this);
+       this.add(scorePanel);
         try {
             road = ImageIO.read(getClass().getResource("/road.png"));
             //road = ImageIO.read(getClass().getResourceAsStream("/road.png"));
@@ -55,7 +61,8 @@ public class GameScreenPanel extends JPanel implements KeyListener{
    
     public void paintComponent(Graphics g){
        super.paintComponent(g);
-        for(int i = 0; i < gameMatrix.length; i++)
+       
+       for(int i = 0; i < gameMatrix.length; i++)
         {   
             for(int j = 0; j < gameMatrix[i].length; j++)
             {
@@ -76,6 +83,7 @@ public class GameScreenPanel extends JPanel implements KeyListener{
                 }
             }
         }
+        
     }
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -108,6 +116,16 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public int getScore()
+	{
+		return score;
+	}
+	
+	public void setScore(int score)
+	{
+		this.score = score;
 	}
 
 }
