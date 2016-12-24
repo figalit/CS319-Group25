@@ -11,6 +11,6 @@ public abstract class GameObject {
 	}
 	protected void setImage(String imageName){
 		 try { image = ImageIO.read(getClass().getResourceAsStream("/" + imageName)); } 
-	        catch(IOException e) {    e.printStackTrace(); }
+	        catch(IOException e) {  System.out.println("\n\nCANT FIND PICTURE\n\n");  e.printStackTrace(); }
 	  }	
 }

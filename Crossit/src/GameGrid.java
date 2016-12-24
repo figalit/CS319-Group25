@@ -139,6 +139,7 @@ public class GameGrid
 				{ 
 					charPosition.setY(charPosition.getY()-1);
 					gameMatrix[charPosition.getX()][charPosition.getY()].setCharacter(gameMatrix[charPosition.getX()][charPosition.getY()+1].moveCharacter());
+					player.changeDirection("U");
 					return true;
 				}
 				return false;
@@ -147,6 +148,7 @@ public class GameGrid
 				{ 
 					charPosition.setX(charPosition.getX()-1);
 					gameMatrix[charPosition.getX()][charPosition.getY()].setCharacter(gameMatrix[charPosition.getX()+1][charPosition.getY()].moveCharacter());
+					player.changeDirection("2");
 					return true;
 				}
 				return false;
@@ -155,6 +157,7 @@ public class GameGrid
 				{ 
 					charPosition.setY(charPosition.getY()+1);
 					gameMatrix[charPosition.getX()][charPosition.getY()].setCharacter(gameMatrix[charPosition.getX()][charPosition.getY()-1].moveCharacter());
+					player.changeDirection("3");
 					return true;
 				}
 				return false;
@@ -163,6 +166,7 @@ public class GameGrid
 				{ 
 					charPosition.setX(charPosition.getX()+1);
 					gameMatrix[charPosition.getX()][charPosition.getY()].setCharacter(gameMatrix[charPosition.getX()-1][charPosition.getY()].moveCharacter());
+					player.changeDirection("4");
 					return true;
 				}
 				return false;
