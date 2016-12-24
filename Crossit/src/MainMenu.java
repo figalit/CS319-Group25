@@ -29,9 +29,11 @@ public class MainMenu extends Menu implements ActionListener{
 	private JButton creditsButton = new JButton("");
 	private JButton quitButton = new JButton("");
 	private JButton helpButton = new JButton("");
-	
-	protected MainMenu(GameGrid gameGrid) {
+	private GameEngine gameEngine;
+
+	protected MainMenu(GameEngine gameEngine) {
 		super();
+		this.gameEngine = gameEngine;
 		//Adding the source images
 		try {
 			cross = ImageIO.read(getClass().getResourceAsStream("/cross.png"));
@@ -46,8 +48,7 @@ public class MainMenu extends Menu implements ActionListener{
 			e.printStackTrace();
 		}
 		
-		this.gameGrid = gameGrid;
-		
+				
 		repaint();
 		
 		//Properties of the buttons
@@ -124,25 +125,26 @@ public class MainMenu extends Menu implements ActionListener{
 			
 			if (e.getSource() == newGameButton) {
 				//Start game
-				Frame.switchPanel(new GameScreenPanel(gameGrid));
+				gameEngine.load();
+				Frame.switchPanel(new GameScreenPanel(gameEngine.getGameGrid()));
 				
 			}
 			
 			if (e.getSource() == highscoresButton){
 				//Switch func, located in frame
-				Frame.switchPanel(new Highscores(gameGrid));
+				Frame.switchPanel(new Highscores(gameEngine));
 			}
 			
 			if (e.getSource() == helpButton) {
-				Frame.switchPanel(new Help(gameGrid));
+				Frame.switchPanel(new Help(gameEngine));
 			}
 			
 			if (e.getSource() == settingsButton){
-				Frame.switchPanel(new Settings(gameGrid));
+				Frame.switchPanel(new Settings(gameEngine));
 			}
 			
 			if (e.getSource() == creditsButton){
-				Frame.switchPanel(new Credits(gameGrid));
+				Frame.switchPanel(new Credits(gameEngine));
 			}
 
 			if (e.getSource() == quitButton){

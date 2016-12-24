@@ -8,8 +8,8 @@ public class Help extends SubMenu {
 	
 	private BufferedImage directions, controller, helpText;
 	
-	protected Help (GameGrid gameGrid) {
-		super(gameGrid);
+	protected Help (GameEngine gameEngine) {
+		super(gameEngine);
 		
 		 try { directions = ImageIO.read(getClass().getResourceAsStream("/directions.png"));
 		 		controller = ImageIO.read(getClass().getResourceAsStream("/controls.png"));

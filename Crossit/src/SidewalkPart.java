@@ -13,6 +13,7 @@ public class SidewalkPart extends Part {
 		setCollectable(null);
 		setCharacter(character);
 		this.vehicle = null;
+		super.setImage("grass.png");
 	}
 	public SidewalkPart(Character character, Collectable collectable)
 	{

@@ -20,14 +20,14 @@ public class Settings extends SubMenu implements ActionListener{
 	//private JSlider volumeSlider = new JSlider(JSlider.VERTICAL, 0, 100, 50);
 	//Comment out yapinca settingse girmiyo
 	
-	protected GameGrid gameGrid;
+	protected GameEngine gameEngine;
 	
 	String volume1 = "volume";
 	
 	private BufferedImage theme0, theme1, theme, volume, outfit, changeSymbol, player;
 
-	protected Settings (GameGrid gameGrid) {
-		super(gameGrid);
+	protected Settings (GameEngine gameEngine) {
+		super(gameEngine);
 		
 		try {
 			theme0 = ImageIO.read(getClass().getResourceAsStream("/theme0.png"));

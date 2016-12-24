@@ -13,7 +13,7 @@ public class RoadPart extends Part{
 	}
 	public RoadPart(Vehicle vehicle)
 	{
-		super.setImage(""); //address of object picture
+		super.setImage("road.png"); //address of object picture
 		this.setVehicle(vehicle);
 	}
 	

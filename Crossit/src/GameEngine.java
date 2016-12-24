@@ -22,7 +22,7 @@ public class GameEngine {
 	private Storage storage;
 	Timer timer;
 	UpdateGameScheduler scheduler;
-	InputManager inputManager;
+
 	
 	protected GameEngine(){
 		this.stageNo = INIT_NO;
@@ -49,9 +49,7 @@ public class GameEngine {
 	    gameGrid.generate(1);
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
-		inputManager = new InputManager(this);
-		inputManager.addNotify();
-		load();
+		//load();
 	}
 	
 	protected GameEngine(int gameSpeed, int initLifeCount, int currentEffect){
@@ -93,7 +91,7 @@ public class GameEngine {
 	
 	protected void load(){
 		// do some loading of the screen or maybe some listeners? 
-		timer.schedule(scheduler, 0, 1000);
+		timer.schedule(scheduler, 1000, 1000);
 	}
 	protected void update(){
 		gameGrid.update();

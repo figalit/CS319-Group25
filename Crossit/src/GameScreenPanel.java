@@ -41,7 +41,7 @@ public class GameScreenPanel extends JPanel implements KeyListener{
             e.printStackTrace();
         }
        
-        //repaint();
+        repaint();
     }
     public void addNotify() {
         super.addNotify();
@@ -49,12 +49,12 @@ public class GameScreenPanel extends JPanel implements KeyListener{
     }
    
     public void updateGameScreen(){
-       
-       
+    	paint(getGraphics());;
+    	revalidate();
     }
    
     public void paintComponent(Graphics g){
-       
+       super.paintComponent(g);
         for(int i = 0; i < gameMatrix.length; i++)
         {   
             for(int j = 0; j < gameMatrix[i].length; j++)
@@ -62,7 +62,20 @@ public class GameScreenPanel extends JPanel implements KeyListener{
                 if(gameMatrix[i][j] != null)
                 	g.drawImage(gameMatrix[i][j].getImage(), i * 100, j * 90, 100, 90, null);
             }
-        }           
+        }
+        for(int i = 0; i < gameMatrix.length; i++)
+        {   
+            for(int j = 0; j < gameMatrix[i].length; j++)
+            {
+                if(gameMatrix[i][j] != null)
+                {
+                	if(gameMatrix[i][j].getVehicle() != null)
+                       		g.drawImage(gameMatrix[i][j].getVehicle().getImage(), i * 100, j * 90, 100, 90, null);
+                	if(gameMatrix[i][j].getCharacter() != null)
+                   		g.drawImage(gameMatrix[i][j].getCharacter().getImage(), i * 100, j * 90, 100, 90, null);
+                }
+            }
+        }
     }
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -84,6 +97,7 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 			gameGrid.moveCharacter(DOWN);
 			break;
 		}
+		updateGameScreen();
 	}
 	@Override
 	public void keyReleased(KeyEvent arg0) {
