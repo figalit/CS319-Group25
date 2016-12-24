@@ -150,6 +150,8 @@ public class GameGrid
 		return -1;
 	}
 	
+	
+	
 	protected void putColectables()
 	{
 		Coin coin1 = new Coin();
