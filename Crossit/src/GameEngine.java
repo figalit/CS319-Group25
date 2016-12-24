@@ -29,6 +29,7 @@ public class GameEngine {
 		this.currentLife = currentLife;
 	}
 
+	private int currentMoney;
 	private int currentEffect;
 	private GameScreenPanel gsp;
 
@@ -44,6 +45,7 @@ public class GameEngine {
 		this.totalScore = INIT_NO;
 		this.gameSpeed = INIT_GAME_SPEED;
 		this.currentLife = INIT_LIFE_COUNT;
+		this.currentMoney = INIT_NO;
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
 	    this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
@@ -57,9 +59,7 @@ public class GameEngine {
 	
 	protected void load(){
 		gameGrid.generate(INIT_NO+1);
-
-		currentLife = 3;
-
+		this.currentLife = 3;
 		// do some loading of the screen or maybe some listeners? 
 		service.scheduleAtFixedRate(scheduler, 100, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
@@ -133,12 +133,12 @@ public class GameEngine {
 		// generate new stage.
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
-
-		this.gameSpeed = this.gameSpeed ;
-		this.service.scheduleAtFixedRate(scheduler, 0, 2*this.gameSpeed, TimeUnit.MILLISECONDS);
-
+		this.gameSpeed = this.gameSpeed;
+		this.service.scheduleAtFixedRate(scheduler, 0, 5*this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
-	
+	protected void applyCollectable(int perk){
+		
+	}	
 	protected void endGame() {
 		Frame.switchPanel(new EndGameMenu(this));
 	}

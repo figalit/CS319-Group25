@@ -49,20 +49,6 @@ public class GameScreenPanel extends JPanel implements KeyListener{
 		addKeyListener(this);
 		this.add(scorePanel);
 		
-		try {
-			road = ImageIO.read(getClass().getResource("/road.png"));
-			//road = ImageIO.read(getClass().getResourceAsStream("/road.png"));
-			//images = new ArrayList<BufferedImage>();
-			// images.add(road);
-
-			//for(BufferedImage image : images)
-			//{
-			//image.;
-			//}
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-
 		repaint();
 	}
 	public void addNotify() {
