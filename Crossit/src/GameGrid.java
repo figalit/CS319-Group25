@@ -190,6 +190,16 @@ public class GameGrid
 		this.charPosition = charPosition;
 	}
 	
+	protected boolean checkEndOfStage()
+	{
+		if(charPosition.getY() == 0 )
+			return true;
+		return false;
+	}
+	protected void resetCharacter()
+	{
+		gameMatrix[4][9].setCharacter(gameMatrix[charPosition.getX()][charPosition.getY()].moveCharacter());
+	}
 
 	public Part[][] getGameMatrix()
 	{
