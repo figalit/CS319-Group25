@@ -36,7 +36,6 @@ public class Settings extends SubMenu implements ActionListener{
 			volume = ImageIO.read(getClass().getResourceAsStream("/" + volume1 + ".png"));
 			outfit = ImageIO.read(getClass().getResourceAsStream("/outfit.png"));
 			changeSymbol = ImageIO.read(getClass().getResourceAsStream("/changeSymbol.png"));
-			playerImg = gameEngine.getGameGrid().player.getImage();
 			
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -74,6 +73,8 @@ public class Settings extends SubMenu implements ActionListener{
 		
 		theme0Button.addActionListener(this);
 		theme1Button.addActionListener(this);
+		prevButton.addActionListener(this);
+		nextButton.addActionListener(this);
 		//volumeSlider.addChangeListener((ChangeListener) this);
 		
 		//this.add(volumeSlider);
@@ -86,7 +87,7 @@ public class Settings extends SubMenu implements ActionListener{
 		
 	public void paint(Graphics g){
 		super.paint(g);
-		
+		playerImg = gameEngine.getGameGrid().player.getImage();
 		g.drawImage(theme0, 800, 300, 150, 150, null);
 		g.drawImage(theme1, 1000, 300, 150, 150, null);
 		g.drawImage(theme, 100, 250, 450, 250, null);
@@ -115,13 +116,15 @@ public class Settings extends SubMenu implements ActionListener{
 			if(i != 0) {
 				i--;
 				gameEngine.getGameGrid().player.changeHat(i);
+				repaint();
 			}
 		}
 		
 		if (e.getSource() == nextButton) {
-			if(i < gameEngine.getGameGrid().hats.size()) {
+			if(i + 1 < gameEngine.getGameGrid().hats.size()) {
 				i++;
 				gameEngine.getGameGrid().player.changeHat(i);
+				repaint();
 			}	
 		}	
 	}
