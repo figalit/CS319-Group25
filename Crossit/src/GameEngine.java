@@ -40,7 +40,7 @@ public class GameEngine {
 
 	
 	protected GameEngine(){
-		this.stageNo = INIT_NO;
+		this.stageNo = INIT_NO+1;
 		this.stageScore = INIT_NO;
 		this.totalScore = INIT_NO;
 		this.gameSpeed = INIT_GAME_SPEED;
@@ -58,15 +58,18 @@ public class GameEngine {
 	}
 	
 	protected void load(){
-		gameGrid.generate(INIT_NO+1);
+		gameGrid.generate(INIT_NO);
 		this.currentLife = 3;
+		stageNo = 1;
+		stageScore = 0;
+		totalScore = 0;
 		// do some loading of the screen or maybe some listeners? 
 		service.scheduleAtFixedRate(scheduler, 100, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
 	protected void update(){
 		gameGrid.update();
-		this.totalScore += 1;
-		gsp.setScore(this.totalScore);
+		this.stageScore += 1;
+		gsp.setScore(this.stageScore);
 		if(checkCollision()){
 			reduceLife();
 			if(this.currentLife < 1){
@@ -83,22 +86,22 @@ public class GameEngine {
 			switch (collectableValue)
 			{				
 			case 0: // coin
-				this.totalScore += 20;
+				this.stageScore += 20;
 				gsp.setScore(this.totalScore);
 			case 1: // shield
 				// this is probably not to be implemented yet.
-				this.totalScore += 20;
+				this.stageScore += 20;
 				msg = "You received a shield. Right now we'll increase your score!";
 			case 2: // one less life 
 				this.currentLife -= 1;
 				msg = "You received a life" ;
 			case 3: // magnet
 				msg = "You received a magnet. Right now we'll increase your score!";
-				this.totalScore += 20;
+				this.stageScore += 20;
 			case 4: // teleportation
-				//this.gameGrid.applyTeleportation();
-				msg = "We'll increase your score!";
-				this.totalScore += 20;
+				this.gameGrid.teleportCharacter();
+				msg = "Player will teleport!";
+				this.stageScore += 20;
 			case 5: // faster traffic
 				msg = "We made the game faster!";
 				this.gameSpeed += 200;
@@ -113,6 +116,7 @@ public class GameEngine {
 				this.gameSpeed -= 200;
 			default : ;
 			}
+			gsp.setScore(this.totalScore);
 		}
 		if(gameGrid.checkEndOfStage()){
 			endStage();
@@ -131,6 +135,7 @@ public class GameEngine {
 	
 	protected void endStage(){
 		// generate new stage.
+		totalScore += stageScore;
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
 		this.gameSpeed = this.gameSpeed;
