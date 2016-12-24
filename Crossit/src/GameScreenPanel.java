@@ -57,7 +57,7 @@ public class GameScreenPanel extends JPanel implements KeyListener{
     }
    
     public void updateGameScreen(){
-    	paint(getGraphics());;
+    	paint(getGraphics());
     	revalidate();
     }
    
