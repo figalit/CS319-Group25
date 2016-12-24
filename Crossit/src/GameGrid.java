@@ -199,6 +199,8 @@ public class GameGrid
 	protected void resetCharacter()
 	{
 		gameMatrix[4][9].setCharacter(gameMatrix[charPosition.getX()][charPosition.getY()].moveCharacter());
+		charPosition.setX(4);
+		charPosition.setY(9);
 	}
 
 	public Part[][] getGameMatrix()

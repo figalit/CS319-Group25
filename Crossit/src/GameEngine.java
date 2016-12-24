@@ -29,15 +29,16 @@ public class GameEngine {
 		this.stageNo = INIT_NO;
 		this.stageScore = INIT_NO;
 		this.totalScore = INIT_NO;
-		this.gameSpeed = INIT_NO;
+		this.gameSpeed = INIT_GAME_SPEED;
 		this.currentLife = INIT_LIFE_COUNT;
 		this.currentMoney = INIT_NO;
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
-
-	    this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
-				 storage.getVehicleSet(Storage.MED),
-				 storage.getVehicleSet(Storage.HARD));
+		int[] A ={0,1,0,0,0,1,0,1,0,0}; 
+	     int[][] easy = {A,A,A,A,A,A,A,A,A,A};
+	    this.gameGrid = new GameGrid(easy,
+	    		easy,
+	    		easy);
 	    gameGrid.generate(1);
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
@@ -64,6 +65,11 @@ public class GameEngine {
 	protected void load(){
 		// do some loading of the screen or maybe some listeners? 
 		timer.schedule(scheduler, 1000, this.gameSpeed);
+	}
+	protected void load(int gameSpeed){
+		// do some loading of the screen or maybe some listeners? 
+		//timer.cancel();
+		timer.schedule(scheduler, 1000, gameSpeed);
 	}
 	protected void update(){
 		gameGrid.update();
@@ -96,7 +102,7 @@ public class GameEngine {
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
 		this.gameSpeed = this.gameSpeed - 150;
-		this.timer.schedule(scheduler, 0, this.gameSpeed);
+		load( this.gameSpeed);
 	}
 	protected void applyCollectable(int perk){
 		

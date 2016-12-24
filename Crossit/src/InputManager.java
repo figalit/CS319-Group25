@@ -29,9 +29,9 @@ public class InputManager extends JPanel implements KeyListener{
 		System.out.println("---" + id + "---");
 		switch(id)
 		{
-		case 401: // up
+		case KeyEvent.VK_UP: // up
 			gameEngine.move(UP);
-			System.out.println("\n\nPressed UP\n\n");
+			//System.out.println("\n\nPressed UP\n\n");
 			break;
 		case KeyEvent.VK_LEFT: // left
 			gameEngine.move(LEFT);
