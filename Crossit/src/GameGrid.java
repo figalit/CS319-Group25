@@ -77,7 +77,24 @@ public class GameGrid
 		
 		
 		//add coins and mystery boxes
-		putColectables();
+		int a,b;
+		if(no <= 5)
+		{
+			a = 2;
+			b = 1;
+		}
+		else
+			if(no <= 10)
+			{
+				a = 3;
+				b = 2;
+			}
+			else
+			{
+				a = 4;
+				b = 4;
+			}
+		putColectables(a,b);
 	}
 	protected void update()	//may generate 'not-deep copy' problems
 	{
@@ -128,16 +145,21 @@ public class GameGrid
 	
 	
 	
-	protected void putColectables()
-	{
-		Coin coin1 = new Coin();
-		//Coin coin2 = new Coin();
-		
-		int x = 1 + (int)(Math.random() * 9);
-		int y = 1 + (int)(Math.random() * 9);
-		
-		gameMatrix[x][y].setCollectable(coin1);
-	}
+	 protected void putColectables(int coinNo, int colNo)
+	 {
+	  for(int i = 0 ; i < coinNo; i++){
+		   Coin coin = new Coin();
+		   int x = 1 + (int)(Math.random() * 9);
+		   int y = 1 + (int)(Math.random() * 9);
+		   gameMatrix[x][y].setCollectable(coin);
+	  }
+	  for(int i = 0 ; i < colNo; i++){
+		   MysteryBox mBox = new MysteryBox();
+		   int x = 1 + (int)(Math.random() * 9);
+		   int y = 1 + (int)(Math.random() * 9);
+		   gameMatrix[x][y].setCollectable(mBox);
+	  }
+	 }
 	
 	protected boolean moveCharacter(int direction)
 	{
