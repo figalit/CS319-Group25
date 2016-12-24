@@ -9,8 +9,8 @@ public class GameGrid
 	private int[][] hardVehicleSet;
 	private int[] directions;
 	private Position charPosition;
-	private Character player;
-	private ArrayList hats;
+	protected Character player;
+	protected ArrayList hats;
 	
 	public GameGrid(int[][] easyVehicleSet, int[][] normalVehicleSet, int[][] hardVehicleSet)
 	{

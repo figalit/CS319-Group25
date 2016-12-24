@@ -20,11 +20,11 @@ public class Settings extends SubMenu implements ActionListener{
 	//private JSlider volumeSlider = new JSlider(JSlider.VERTICAL, 0, 100, 50);
 	//Comment out yapinca settingse girmiyo
 	
-	protected GameEngine gameEngine;
-	
+
+	private int i = 0;
 	String volume1 = "volume";
 	
-	private BufferedImage theme0, theme1, theme, volume, outfit, changeSymbol, player;
+	private BufferedImage theme0, theme1, theme, volume, outfit, changeSymbol, playerImg;
 
 	protected Settings (GameEngine gameEngine) {
 		super(gameEngine);
@@ -36,7 +36,7 @@ public class Settings extends SubMenu implements ActionListener{
 			volume = ImageIO.read(getClass().getResourceAsStream("/" + volume1 + ".png"));
 			outfit = ImageIO.read(getClass().getResourceAsStream("/outfit.png"));
 			changeSymbol = ImageIO.read(getClass().getResourceAsStream("/changeSymbol.png"));
-			player = ImageIO.read(getClass().getResourceAsStream("/player.png"));
+			playerImg = gameEngine.getGameGrid().player.getImage();
 			
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -86,13 +86,14 @@ public class Settings extends SubMenu implements ActionListener{
 		
 	public void paint(Graphics g){
 		super.paint(g);
+		
 		g.drawImage(theme0, 800, 300, 150, 150, null);
 		g.drawImage(theme1, 1000, 300, 150, 150, null);
 		g.drawImage(theme, 100, 250, 450, 250, null);
 		g.drawImage(volume, 100, 90, 450, 250, null);
 		g.drawImage(outfit, 100, 500, 450, 250, null);
 		g.drawImage(changeSymbol, 700, 500, 450, 250, null);
-		g.drawImage(player, 860, 525, 150, 150, null);
+		g.drawImage(playerImg, 860, 525, 150, 150, null);
 			
 	}
 	
@@ -109,7 +110,20 @@ public class Settings extends SubMenu implements ActionListener{
 			setTheme(1);
 			repaint();
 		}
-			
+		
+		if (e.getSource() == prevButton) {
+			if(i != 0) {
+				i--;
+				gameEngine.getGameGrid().player.changeHat(i);
+			}
+		}
+		
+		if (e.getSource() == nextButton) {
+			if(i < gameEngine.getGameGrid().hats.size()) {
+				i++;
+				gameEngine.getGameGrid().player.changeHat(i);
+			}	
+		}	
 	}
 	
 }
