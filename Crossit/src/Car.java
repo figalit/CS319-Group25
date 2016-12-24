@@ -4,7 +4,10 @@ public class Car extends Vehicle
 	protected Car(int direction)
 	{
 		super(direction);
-		super.setImage("car.png"); //addr of car png
+		if(direction == 0)
+			super.setImage("car0.png"); //addr of car png
+		else
+			super.setImage("car1.png"); //addr of car png
 	}
 	protected void print()
 	{
