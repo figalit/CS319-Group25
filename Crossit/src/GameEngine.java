@@ -107,8 +107,7 @@ public class GameEngine {
 		
 	}	
 	protected void endGame() {
-		// does something about the death menu.
-		System.out.println("");
+		Frame.switchPanel(new EndGameMenu(this));
 	}
 	// TODO: check if this is ok.
 	protected GameGrid getGameGrid()
