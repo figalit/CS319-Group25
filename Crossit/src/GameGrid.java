@@ -177,6 +177,10 @@ public class GameGrid
 	{
 		player.addHat(addr);
 	}
+	protected void changeHat(int no)
+	{
+		player.changeHat(no);
+	}
 	
 	public Position getCharPosition() {
 		return charPosition;

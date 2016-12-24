@@ -11,9 +11,10 @@ public class Main extends Frame{
 				public void run(){
 					
 					GameEngine gameEngine = new GameEngine();
+					
+					GameScreenPanel gsp = new GameScreenPanel(gameEngine.getGameGrid());
+					gameEngine.setGsp(gsp);
 					Frame.switchPanel(new MainMenu(gameEngine));
-					//gameEngine.load();
-					//GameScreenPanel gsp = new GameScreenPanel(gameEngine.getGameGrid());
 					//Frame.switchPanel(gsp);
 					//gsp.updateGameScreen();
 					//gameEngine.load();

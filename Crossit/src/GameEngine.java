@@ -17,6 +17,7 @@ public class GameEngine {
 	private int currentLife;
 	private int currentMoney;
 	private int currentEffect;
+	private GameScreenPanel gsp;
 
 	private GameGrid gameGrid;
 	private Storage storage;
@@ -95,6 +96,7 @@ public class GameEngine {
 	}
 	protected void update(){
 		gameGrid.update();
+		gsp.updateGameScreen();
 		gameGrid.print();
 	}
 	protected boolean checkCollision(){
@@ -120,5 +122,13 @@ public class GameEngine {
 	}
 	protected int durationLeft(){
 		return 0; // TODO: change this
+	}
+
+	public GameScreenPanel getGsp() {
+		return gsp;
+	}
+
+	public void setGsp(GameScreenPanel gsp) {
+		this.gsp = gsp;
 	}
 }
