@@ -14,7 +14,7 @@ public abstract class Part extends GameObject
 	protected void print()
 	{
 		if(getVehicle() != null && getCharacter() == null)
-			((Motorcycle)getVehicle()).print();
+			getVehicle().print();
 		else
 			if(getVehicle() == null && getCharacter() != null)
 				System.out.print("-char");
@@ -34,10 +34,10 @@ public abstract class Part extends GameObject
 			return true;
 		return false;
 	}
-	public Collectable getCollectable() {
+	protected Collectable getCollectable() {
 		return collectable;
 	}
-	public Vehicle getVehicle() {
+	protected Vehicle getVehicle() {
 		return vehicle;
 	}
 }

@@ -9,8 +9,9 @@ public class Main extends Frame{
 			SwingUtilities.invokeAndWait(new Runnable(){
 				@Override
 				public void run(){
-					//Frame.switchPanel(new MainMenu(grid));
+					
 					GameEngine gameEngine = new GameEngine();
+					Frame.switchPanel(new MainMenu(gameEngine.getGameGrid()));
 					//gameEngine.load();
 				}
 			});

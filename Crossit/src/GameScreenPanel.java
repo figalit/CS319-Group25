@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,31 +11,41 @@ import javax.swing.JPanel;
 
 import java.awt.Graphics;
 
-public class GameScreenPanel extends JPanel{
+public class GameScreenPanel extends JPanel implements KeyListener{
    
     private ArrayList<BufferedImage> images;
     private BufferedImage road;   
-    GameObject[][] gameMatrix;
+    GameGrid gameGrid;
+    Part[][] gameMatrix;
+    static final int UP = 1;	
+	static final int LEFT = 2;
+	static final int DOWN = 3;
+	static final int RIGHT = 4;
 
     protected GameScreenPanel(GameGrid gameGrid) {
        
-        gameMatrix = gameGrid.getGameMatrix();
-       
+       this.gameGrid = gameGrid;
+       this.gameMatrix = gameGrid.getGameMatrix();
+       addKeyListener(this);
         try {
             road = ImageIO.read(getClass().getResource("/road.png"));
             //road = ImageIO.read(getClass().getResourceAsStream("/road.png"));
-            images = new ArrayList<BufferedImage>();
-            images.add(road);
+            //images = new ArrayList<BufferedImage>();
+           // images.add(road);
            
-            for(BufferedImage image : images)
-            {
+            //for(BufferedImage image : images)
+            //{
                 //image.;
-            }
+            //}
         } catch(IOException e) {
             e.printStackTrace();
         }
        
         //repaint();
+    }
+    public void addNotify() {
+        super.addNotify();
+        requestFocus();
     }
    
     public void updateGameScreen(){
@@ -52,5 +64,36 @@ public class GameScreenPanel extends JPanel{
             }
         }           
     }
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		int button = e.getID();
+		switch(button)
+		{
+		case KeyEvent.VK_UP: // up
+			gameGrid.moveCharacter(UP);
+			System.out.println("\n\nPressed UP\n\n");
+			break;
+		case KeyEvent.VK_LEFT: // left
+			gameGrid.moveCharacter(LEFT);
+			break;
+		case KeyEvent.VK_RIGHT: // right
+			gameGrid.moveCharacter(RIGHT);
+			break;
+		case KeyEvent.VK_DOWN: // down
+			gameGrid.moveCharacter(DOWN);
+			break;
+		}
+	}
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

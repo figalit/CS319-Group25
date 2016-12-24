@@ -50,6 +50,7 @@ public class GameEngine {
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
 		inputManager = new InputManager(this);
+		inputManager.addNotify();
 		load();
 	}
 	

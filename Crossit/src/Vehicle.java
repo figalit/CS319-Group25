@@ -2,19 +2,23 @@
 public abstract class Vehicle extends GameObject
 {
 	private int direction; //0 for left, 1 for right
-	public Vehicle(int direction)
+	protected Vehicle(int direction)
 	{
 		this.setDirection(direction);
 	}
-	public void setImage(String addr)
+	protected void setImage(String addr)
 	{
 		super.setImage(addr);
 	}
-	public int getDirection() {
+	protected int getDirection() {
 		return direction;
 	}
-	public void setDirection(int direction) {
+	protected void setDirection(int direction) {
 		this.direction = direction;
+	}
+	protected void print()
+	{
+		
 	}
 	
 }
