@@ -1,4 +1,3 @@
-import java.awt.event.KeyEvent;
 import java.util.Timer;
 
 /**
@@ -10,6 +9,7 @@ import java.util.Timer;
 public class GameEngine {
 	static final int INIT_NO = 0;
 	static final int INIT_LIFE_COUNT = 3;
+	static final int INIT_GAME_SPEED = 1500;
 	private int stageNo;
 	private int stageScore;
 	private int totalScore;
@@ -35,43 +35,14 @@ public class GameEngine {
 		this.currentEffect = INIT_NO; // TBD
 		this.storage = new Storage();
 
-		int[] A ={0,1,0,0,0,1,0,1,0,0}; 
-	    int[][] easy = {A,A,A,A,A,A,A,A,A,A};
-//github.com/figalit/CS319-Group25.git
-		//int[][] a = storage.getVehicleSet(Storage.EASY);
-		/*for(int i = 0; i < a.length; i++){
-			for(int j = 0; j < a[i].length; j++){
-				System.out.print(a[i][j] + " ");
-			}
-			System.out.println();
-		}*/
-
-	    this.gameGrid = new GameGrid(easy, easy, easy);
+	    this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
+				 storage.getVehicleSet(Storage.MED),
+				 storage.getVehicleSet(Storage.HARD));
 	    gameGrid.generate(1);
 		timer = new Timer();
 		scheduler = new UpdateGameScheduler(this);
-		//load();
 	}
 	
-	protected GameEngine(int gameSpeed, int initLifeCount, int currentEffect){
-		this.stageNo = INIT_NO;
-		this.stageScore = INIT_NO;
-		this.totalScore = INIT_NO;
-		this.gameSpeed = gameSpeed;
-		this.currentLife = initLifeCount;
-		this.currentMoney = INIT_NO;
-		this.currentEffect = currentEffect; // the current effect of the game? 
-		//this.storage = new Storage();
-		int[] A ={0,1,0,0,0,1,0,1,0,0}; 
-	    int[][] easy = {A,A,A,A,A,A,A,A,A,A};
-		/*this.gameGrid = new GameGrid(storage.getVehicleSet(Storage.EASY),
-									 storage.getVehicleSet(Storage.MED),
-									 storage.getVehicleSet(Storage.HARD));*/
-	    this.gameGrid = new GameGrid(easy, easy, easy);
-		timer = new Timer();
-		scheduler = new UpdateGameScheduler(this);
-
-	}
 	protected void move(int where){
 		switch(where)
 		{
@@ -92,26 +63,48 @@ public class GameEngine {
 	
 	protected void load(){
 		// do some loading of the screen or maybe some listeners? 
-		timer.schedule(scheduler, 1000, 1000);
+		timer.schedule(scheduler, 1000, this.gameSpeed);
 	}
 	protected void update(){
 		gameGrid.update();
+		if(checkCollision()){
+			reduceLife();
+			if(this.currentLife < 1){
+				endGame();
+			}else{
+				// puts character to start of stage
+				gameGrid.resetCharacter();
+			}
+		}
+		if(gameGrid.checkEndOfStage()){
+			endStage();
+		}
 		gsp.updateGameScreen();
-		gameGrid.print();
 	}
 	protected boolean checkCollision(){
-		
-		return false; // TODO: change
+		if(gameGrid.detectCollision()){
+			return true;
+		}
+		return false; 
 	}
 	protected void reduceLife(){
-		
+		this.currentLife = this.currentLife - 1;
 	}
-	protected void endGame(){
-		
+	
+	protected void endStage(){
+		// generate new stage.
+		gameGrid.generate(this.stageNo + 1);
+		this.stageNo++;
+		this.gameSpeed = this.gameSpeed - 150;
+		this.timer.schedule(scheduler, 0, this.gameSpeed);
 	}
 	protected void applyCollectable(int perk){
 		
 	}	
+	protected void endGame() {
+		// does something about the death menu.
+		
+	}
 	// TODO: check if this is ok.
 	protected GameGrid getGameGrid()
 	{
