@@ -49,14 +49,24 @@ public class GameGrid
 		
 		for(int i = 0; i < GRID_SIZE; i++)
 			gameMatrix[i][0] = new SidewalkPart(theme);
+		
+		int[][] currentSet;
 		if(no <= 5)
-		{
+			currentSet = easyVehicleSet;
+		else
+			if(no <= 10)
+				currentSet = normalVehicleSet;
+			else
+				currentSet = hardVehicleSet;
+		
+		
 			for(int j = 1; j < GRID_SIZE-1; j++)
 			{
+				int random = (int)(Math.random() * 9 + 1);
 				int newDirection = (int)(Math.random() * 2);
 				directions[j] = newDirection;
 				for(int i = 0; i < GRID_SIZE; i++)
-				switch(easyVehicleSet[j][i])
+				switch(currentSet[random][i])
 				{
 					case 0: gameMatrix[i][j] = new RoadPart(); break;
 					case 1: gameMatrix[i][j] = new RoadPart(new Motorcycle(newDirection));break;
@@ -64,42 +74,8 @@ public class GameGrid
 					case 3: gameMatrix[i][j] = new RoadPart(new Bus(newDirection));break;
 				}
 			}
-		}
-		else
-		{
-			if(no <= 10)
-			{
-				for(int j = 1; j < GRID_SIZE-1; j++)
-				{
-					int newDirection = (int)(Math.random() * 2);
-					directions[j] = newDirection;
-					for(int i = 0; i < GRID_SIZE; i++)
-					switch(normalVehicleSet[i][j])
-					{
-						case 0: gameMatrix[i][j] = new RoadPart(); break;
-						case 1: gameMatrix[i][j] = new RoadPart(new Motorcycle(newDirection)); break;
-						case 2: gameMatrix[i][j] = new RoadPart(new Car(newDirection)); break;
-						case 3: gameMatrix[i][j] = new RoadPart(new Bus(newDirection)); break;
-					}	
-				}
-			}
-			else
-			{
-				for(int j = 1; j < GRID_SIZE-1; j++)
-				{
-					int newDirection = (int)(Math.random() * 2);
-					directions[j] = newDirection;
-					for(int i = 0; i < GRID_SIZE; i++)
-					switch(hardVehicleSet[i][j])
-					{
-						case 0: gameMatrix[i][j] = new RoadPart(); break;
-						case 1: gameMatrix[i][j] = new RoadPart(new Motorcycle(newDirection)); break;
-						case 2: gameMatrix[i][j] = new RoadPart(new Car(newDirection)); break;
-						case 3: gameMatrix[i][j] = new RoadPart(new Bus(newDirection)); break;
-					} 
-				}
-			}
-		}
+		
+		
 		//add coins and mystery boxes
 		putColectables();
 	}
@@ -234,6 +210,12 @@ public class GameGrid
 		gameMatrix[4][9].setCharacter(gameMatrix[charPosition.getX()][charPosition.getY()].moveCharacter());
 		charPosition.setX(4);
 		charPosition.setY(9);
+	}
+	protected void teleportCharacter()
+	{
+		gameMatrix[charPosition.getX()][0].setCharacter(gameMatrix[charPosition.getX()][charPosition.getY()].moveCharacter());
+		charPosition.setX(charPosition.getX());
+		charPosition.setY(0);
 	}
 
 	public Part[][] getGameMatrix()

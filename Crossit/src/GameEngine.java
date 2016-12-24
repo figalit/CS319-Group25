@@ -55,24 +55,7 @@ public class GameEngine {
 
 	}
 	
-/*	protected void move(int where){
-		switch(where)
-		{
-		case InputManager.UP: // up
-			gameGrid.moveCharacter(InputManager.UP);
-			break;
-		case InputManager.LEFT: // up
-			gameGrid.moveCharacter(InputManager.LEFT);
-			break;
-		case InputManager.RIGHT: // up
-			gameGrid.moveCharacter(InputManager.RIGHT);
-			break;
-		case InputManager.DOWN: // up
-			gameGrid.moveCharacter(InputManager.DOWN);
-			break;
-		}
-	}
-	*/
+
 	protected void load(){
 		gameGrid.generate(INIT_NO+1);
 		// do some loading of the screen or maybe some listeners? 
@@ -112,7 +95,7 @@ public class GameEngine {
 		// generate new stage.
 		gameGrid.generate(this.stageNo + 1);
 		this.stageNo++;
-		this.gameSpeed = this.gameSpeed - 150;
+		this.gameSpeed = this.gameSpeed - 50;
 		this.service.scheduleAtFixedRate(scheduler, 0, this.gameSpeed, TimeUnit.MILLISECONDS);
 	}
 	protected void applyCollectable(int perk){
